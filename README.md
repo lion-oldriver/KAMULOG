@@ -13,6 +13,7 @@
 
 昔から信じられてきた神と触れ合うことのできるところが神社という場所です。ですが神社というと堅苦しいイメージや初詣にいく所というイメージがあるため身近に感じづらい所だと思います。
 そういった人たちにも神社の魅力を知ってもらい参拝してもらいたいと思いました。
+
 また意外と神社の情報がまとめられているサイトが少ないと思い、自分の行きたい条件で絞り込んだり地域で探すことができればより便利だと考えてこのサイトを作りました。
 
 ### ターゲットユーザ
@@ -29,7 +30,7 @@
 
 ## 設計書
 
-- ER図は[こちら](https://app.diagrams.net/#G1uRzK2DnQTD5jFAyO-3V-AFTyq5HuPjns)
+- ER図は[こちら](https://drive.google.com/drive/my-drive)
 - テーブル定義書は[こちら](https://docs.google.com/spreadsheets/d/1kXijU_LJGV37g3FAqLibbZIgqlbEcTfK7SA6ixmzj8w/edit?usp=sharing)
 - 詳細設計は[こちら](https://docs.google.com/spreadsheets/d/175DfXX7WNZVmQWE8exeQ8gM04tY8oUzKX_t54QA1ph8/edit#gid=2133469642)
 
