@@ -1,0 +1,29 @@
+<h1>Admin::Shrines#new</h1>
+<%= form_with model: [:admin, @shrine], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :神社名 %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :住所 %>
+    <%= f.text_area :address %>
+  </div>
+  <div class="form-grooup">
+    <%= f.label :紹介文 %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div class="form-group">
+    <%= f.label :祭神 %>
+    <%= f.text_field :god_name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"タグ(,を入れると複数登録)" %>
+    <%= f.text_field :tag_name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :画像 %>
+    <%= f.attachment_field :shrine_images_images, multiple: true %>
+  </div>
+  <%= f.submit '新規登録', class:"btn btn-sm btn-success" %>
+<% end %>
+

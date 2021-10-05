@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <div class="offset-2 mt-5">
+      <h4 class="d-inline" style='text-shadow: 1px 2px 3px #808080;'>管理者ログイン</h4>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field mt-4">
+          <%= f.label :メールアドレス, class:"col-2 pl-0" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: 40, class:'px-1'%>
+        </div>
+        
+        <div class="field my-2">
+          <%= f.label :パスワード,class:"col-2 pl-0" %>
+          <%= f.password_field :password, autocomplete: "current-password", size: 40, class:'px-1'%>
+        </div>
+        
+        <div class="actions offset-2 my-4">
+          <%= f.submit "ログイン", class:"btn btn-sm btn-primary col-1" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

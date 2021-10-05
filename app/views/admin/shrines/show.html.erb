@@ -1,0 +1,15 @@
+<h1>Admin::Shrines#show</h1>
+<%= @shrine.name %>
+<%= @shrine.address %>
+<% @shrine.shrine_images.first(1).each do |image| %>
+  <%= attachment_image_tag image, :image %>
+<% end %>
+<%= @shrine.introduction %>
+<% @shrine_gods.each do |god| %>
+  <%= god.god_name %>|
+<% end %>
+<% @shrine_tags.each do |tag| %>
+  <%= tag.tag_name %>|
+<% end %>
+<%= @shrine.latitude %>
+<%= @shrine.longitude %>

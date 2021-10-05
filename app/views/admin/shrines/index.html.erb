@@ -1,0 +1,15 @@
+<h1>Admin::Shrines#index</h1>
+<% @shrines.each do |shrine| %>
+  <div>
+    <%= shrine.name %>
+    <%= shrine.address %>
+    <% shrine.shrine_images.first(1).each do |image| %>
+      <%= attachment_image_tag image, :image %>
+    <% end %>
+    <%= shrine.introduction %>
+    <%= shrine.gods.map(&:god_name).join(',') %>
+    <%= shrine.tags.map(&:tag_name).join(',') %>
+    <%= shrine.latitude %>
+    <%= shrine.longitude %>
+  </div>
+<% end %>
