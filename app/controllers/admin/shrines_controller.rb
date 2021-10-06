@@ -1,12 +1,10 @@
 class Admin::ShrinesController < ApplicationController
   def index
-    @shrines = Shrine.all
+    @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags)
   end
 
   def show
     @shrine = Shrine.find(params[:id])
-    @shrine_tags = @shrine.tags
-    @shrine_gods = @shrine.gods
   end
 
   def edit
@@ -24,7 +22,7 @@ class Admin::ShrinesController < ApplicationController
       @shrine.save_god(god_list)
       redirect_to admin_shrine_path(@shrine)
     else
-      render "edit"
+      redirect_to edit_admin_shrine_path(@shrine)
     end
   end
 
@@ -49,6 +47,11 @@ class Admin::ShrinesController < ApplicationController
     @shrine = Shrine.find(params[:id])
     @shrine.destroy
     redirect_to admin_shrines_path
+  end
+
+  def search_tag
+    @tag = Tag.find_by(tag_name: params[:tag_name])
+    @shrines = @tag.shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags)
   end
 
 

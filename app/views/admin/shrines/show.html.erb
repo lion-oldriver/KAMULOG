@@ -1,15 +1,37 @@
-<h1>Admin::Shrines#show</h1>
-<%= @shrine.name %>
-<%= @shrine.address %>
-<% @shrine.shrine_images.first(1).each do |image| %>
-  <%= attachment_image_tag image, :image %>
-<% end %>
-<%= @shrine.introduction %>
-<% @shrine_gods.each do |god| %>
-  <%= god.god_name %>|
-<% end %>
-<% @shrine_tags.each do |tag| %>
-  <%= tag.tag_name %>|
-<% end %>
-<%= @shrine.latitude %>
-<%= @shrine.longitude %>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>神社詳細</h1>
+      <div class="card shadow p-0 mb-3">
+        <% @shrine.shrine_images.first(1).each do |image| %>
+          <%= attachment_image_tag image, :image %>
+        <% end %>
+        <div class="card-body">
+          <h5><%= @shrine.name %></h5>
+          <p><%= @shrine.address %></p>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <%= @shrine.introduction %>
+          </li>
+          <li class="list-group-item">
+            <% @shrine.gods.each do |god| %>
+              <%= god.god_name %>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <% @shrine.tags.each do |tag| %>
+              <%= link_to tag.tag_name + "(#{tag.shrine.count})", admin_search_tag_path(tag_name: tag.tag_name) %>
+            <% end %>
+          </li>
+        </ul>
+        <div class="card-body">
+          <%= link_to '編集', edit_admin_shrine_path(@shrine), class: "btn btn-sm btn-success" %>
+          <%= link_to '削除', admin_shrine_path(@shrine), method: :delete, class: "btn btn-sm btn-danger" %>
+        </div>
+          <!--%= @shrine.latitude %>-->
+          <!--%= @shrine.longitude %>-->
+      </div>
+    </div>
+  </div>
+</div>

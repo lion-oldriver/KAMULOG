@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   }
   root to: "homes#top"
   get "home/about" => "homes#about", as: "about"
+  get "users/caution" => "users#caution"
+  put "users/hide" => "users#hide", as: "users_hide"
+  resources :users, only: [:show, :edit, :update]
   resources :shrines, only: [:index, :show]
+  get "search_tag" => "shrines#search_tag"
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update]
     resources :shrines
+    get "search_tag" => "shrines#search_tag"
   end
 end

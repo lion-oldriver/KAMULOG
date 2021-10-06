@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h3>My Page</h3>
+      <div class="d-flex">
+        <h5>登録情報</h5>
+        <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success" %>
+      </div>
+      <table class="table">
+        <tr>
+          <th>氏名</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>紹介文</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <th>プロフィール画像</th>
+          <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50 %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <h3>行きたいリスト</h3>
+    </div>
+  </div>
+</div>

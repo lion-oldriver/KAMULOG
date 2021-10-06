@@ -1,0 +1,35 @@
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col-10">
+        <h4><%= @user.name %>さんの会員情報編集</h4>
+        <%= form_with url: admin_user_path(@user), model: [:admin ,@user], local: true, class:'mt-4' do |f| %>
+          <div class="form-group">
+            <%= f.label :'会員ID', class:"col-2" %>
+            <%= @user.id %>
+          </div>
+          <div class="form-group">
+            <%= f.label :'氏名', class:"col-2" %>
+            <%= f.text_field :name, class:"mr-3" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :'メールアドレス', class:"col-2" %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="form-group">
+            <%= f.label :'紹介文', class:"col-2" %>
+            <%= f.text_area :introduction %>
+          </div>
+          <div>
+            <%= f.label :'会員ステータス', class:"col-2" %>
+            <%= f.radio_button :is_deleted, false, id: 'user_false' %><%= f.label :false, "有効", class:'mr-2' %>
+            <%= f.radio_button :is_deleted, true, id: 'user_true' %><%= f.label :true, "退会" %>
+          </div>
+          <div class="d-flex">
+            <div class="col-4 offset-2 p-0">
+              <%= f.submit '変更を保存', class:"btn btn-sm btn-success col-7" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

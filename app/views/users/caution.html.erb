@@ -1,0 +1,14 @@
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="d-flex flex-column">
+    <p class="text-center font-weight-bold">本当に退会しますか？</p>
+    <p class="text-center">
+      退会すると、会員登録情報や<br />
+      これまでの投稿履歴が閲覧できなくなります。<br />
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+    <div class="d-flex justify-content-center">
+      <%= link_to '退会しない', user_path(current_user), class:"btn btn-sm btn-primary mx-2" %>
+      <%= link_to '退会する', users_hide_path(current_user), method: :put, data: {confirm: "削除しますか？"}, class:"btn btn-sm btn-danger mx-3" %>
+    </div>
+  </div>
+</div>
