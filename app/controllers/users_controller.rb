@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
+    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:shrine_id)
+    @bookmark_shrines = Shrine.find(bookmarks)
   end
 
   def edit

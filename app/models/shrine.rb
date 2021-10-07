@@ -1,4 +1,6 @@
 class Shrine < ApplicationRecord
+  has_many :bookmarks, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :shrine_tags, dependent: :destroy
   has_many :tags, through: :shrine_tags
   has_many :shrine_gods, dependent: :destroy

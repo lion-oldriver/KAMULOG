@@ -23,6 +23,13 @@
     </div>
     <div class="col-4">
       <h3>行きたいリスト</h3>
+      <% if @bookmark_shrines.present? %>
+        <% @bookmark_shrines.each do |shrine| %>
+          <%= link_to shrine.name, shrine_path(shrine) %><br>
+        <% end %>
+      <% else %>
+        <h5>ブックマークされた神社はありません</h5>
+      <% end %>
     </div>
   </div>
 </div>

@@ -8,6 +8,7 @@ class ShrinesController < ApplicationController
     @near_shrine = @shrine.nearbys(2, units: :km)
     gon.shrine = @shrine
     gon.shrines = @near_shrine
+    @posts = Post.where(shrine_id: @shrine.id).includes(:user, :shrine, :post_images)
   end
 
   def search_tag

@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   get "users/caution" => "users#caution"
   put "users/hide" => "users#hide", as: "users_hide"
   resources :users, only: [:show, :edit, :update]
-  resources :shrines, only: [:index, :show]
+  resources :shrines, only: [:index, :show] do
+    resources :posts, except: [:index, :show]
+    resource :bookmarks, only: [:create, :destroy]
+  end
   get "search_tag" => "shrines#search_tag"
 
+  # 管理者側のルーティング
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',

@@ -2,8 +2,11 @@
   <div class="row">
     <div class="col-7">
       <div class="card shadow p-0 mb-3">
-        <div class="card-body">
+        <div class="card-body d-flex justify-content-between">
           <h4><%= @shrine.name %></h4>
+          <h3 id="bookmark_<%= @shrine.id %>">
+            <%= render "bookmarks/bookmark", shrine:@shrine %>
+          </h3>
         </div>
         <% @shrine.shrine_images.first(1).each do |image| %>
           <%= attachment_image_tag image, :image %>
@@ -43,7 +46,17 @@
       </table>
     </div>
     <div class="col-5">
-      <p>投稿が入ります</p>
+      <%= link_to '新規投稿', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-primary" %>
+      <% @posts.each do |post| %>
+        <%= post.user.name %>
+        <%= post.body %>
+        <%= post.visit_date %>
+        <% post.post_images.first(1).each do |post_image| %>
+          <%= attachment_image_tag post_image, :image %>
+        <% end %>
+        <%= link_to '編集', edit_shrine_post_path(post.shrine, post), class:"btn btn-sm btn-success" %>
+        <%= link_to '削除', shrine_post_path(post.shrine, post), method: :delete, class:"btn btn-sm btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>
