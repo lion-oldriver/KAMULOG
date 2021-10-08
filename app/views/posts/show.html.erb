@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h3><%= link_to @post.shrine.name, shrine_path(@post.shrine), class:"text-reset" %></h3>
+      <div class="card">
+        <h5 class="card-header"><%= link_to @post.user.name, user_path(@post.user) %></h5>
+        <div class="d-flex justify-content-between border-bottom px-3">
+          <p>参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
+          <p id="follow"><%= render "users/follow", user: @post.user %></p>
+        </div>
+        <div class="card-body">
+          <%= @post.body %>
+          <div class="d-flex flex-column mt-4">
+            <% @post.post_images.each do |post_image| %>
+              <%= attachment_image_tag post_image, :image, class:"w-50 rounded mb-4" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <h4><%= @post.user.name %>さんの他の投稿</h4>
+      <% @other_posts.each do |other_post| %>
+        <%= link_to shrine_post_path(other_post.shrine, other_post), class:"text-reset" do %>
+          <div class="card">
+            <h5><%= other_post.shrine.name %></h5>
+            <%= other_post.body.truncate(70) %>
+            <div class="d-flex">
+              <% other_post.post_images.each do |post_image| %>
+                <%= attachment_image_tag post_image, :image, size: "150x100", class:"mr-2" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-5">
+      <h3>他の人の投稿</h3>
+      <% @other_user_posts.each do |post| %>
+        <div class="card">
+          <%= link_to post.user.name, user_path(post.user) %>
+          <p>参拝日：<%= post.visit_date.strftime("%Y年%m月%d日") %></p>
+          <%= link_to shrine_post_path(post.shrine, post) do %>
+            <div class="col-12 p-0 d-flex flex-wrap">
+              <% post.post_images.each do |post_image| %>
+                <%= attachment_image_tag post_image, :image, class:"w-50" %>
+              <% end %>
+            </div>
+            <%= post.body.truncate(50) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

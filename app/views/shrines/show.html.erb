@@ -17,12 +17,12 @@
           </li>
           <li class="list-group-item">祭神：
             <% @shrine.gods.each do |god| %>
-              <%= god.god_name %>
+              <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
             <% end %>
           </li>
           <li class="list-group-item">
             <% @shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_tag_path(tag_name: tag.tag_name) %>
+              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
             <% end %>
           </li>
         </ul>
@@ -45,17 +45,24 @@
         </tbody>
       </table>
     </div>
+
     <div class="col-5">
-      <%= link_to '新規投稿', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-primary" %>
+      <div><%= link_to '新規投稿', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-primary" %></div>
       <% @posts.each do |post| %>
-        <%= post.user.name %>
-        <%= post.body %>
-        <%= post.visit_date %>
-        <% post.post_images.first(1).each do |post_image| %>
-          <%= attachment_image_tag post_image, :image %>
-        <% end %>
-        <%= link_to '編集', edit_shrine_post_path(post.shrine, post), class:"btn btn-sm btn-success" %>
-        <%= link_to '削除', shrine_post_path(post.shrine, post), method: :delete, class:"btn btn-sm btn-danger" %>
+        <div class="card">
+          <%= link_to post.user.name, user_path(post.user) %>
+          <p>参拝日：<%= post.visit_date.strftime("%Y年%m月%d日") %></p>
+          <%= link_to shrine_post_path(post.shrine, post) do %>
+            <div class="col-12 p-0 d-flex flex-wrap">
+              <% post.post_images.each do |post_image| %>
+                <%= attachment_image_tag post_image, :image, class:"w-50" %>
+              <% end %>
+            </div>
+            <%= post.body.truncate(50) %>
+          <% end %>
+          <%= link_to '編集', edit_shrine_post_path(post.shrine, post), class:"btn btn-sm btn-success col-2" %>
+          <%= link_to '削除', shrine_post_path(post.shrine, post), method: :delete, class:"btn btn-sm btn-danger col-2" %>
+        </div>
       <% end %>
     </div>
   </div>

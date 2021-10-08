@@ -8,12 +8,17 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about", as: "about"
   get "users/caution" => "users#caution"
   put "users/hide" => "users#hide", as: "users_hide"
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
   resources :shrines, only: [:index, :show] do
-    resources :posts, except: [:index, :show]
+    resources :posts, except: [:index]
     resource :bookmarks, only: [:create, :destroy]
   end
   get "search_tag" => "shrines#search_tag"
+  get "search" => "searches#search"
 
   # 管理者側のルーティング
   devise_for :admins, controllers: {

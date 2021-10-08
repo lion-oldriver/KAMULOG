@@ -105,7 +105,7 @@ $(function(){
         fontSize : 11,
         fontShadowColor : "white",
         onSelect : function(data){
-            window.location.href = "https://a041e2ed356944bfb35bab6d9b780888.vfs.cloud9.ap-northeast-1.amazonaws.com/search_tag?tag_name=" + data.name;
+            window.location.href = "https://a041e2ed356944bfb35bab6d9b780888.vfs.cloud9.ap-northeast-1.amazonaws.com/search?content=" + data.name + "&model=tag";
         }
     });
 });

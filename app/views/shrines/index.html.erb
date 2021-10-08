@@ -13,14 +13,16 @@
         </div>
         <ul class="list-group">
           <li class="list-group-item">
-            <%= shrine.introduction %>
+            <%= shrine.introduction.truncate(50) %>
           </li>
           <li class="list-group-item">
-            <%= shrine.gods.map(&:god_name).join(',') %>
+            <% shrine.gods.each do |god| %>
+              <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
+            <% end %>
           </li>
           <li class="list-group-item">
             <% shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_tag_path(tag_name: tag.tag_name) %>
+              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
             <% end %>
           </li>
         </ul>

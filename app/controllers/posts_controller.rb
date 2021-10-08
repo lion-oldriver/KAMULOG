@@ -1,4 +1,11 @@
 class PostsController < ApplicationController
+  def show
+    @post = Post.find(params[:id])
+    @other_posts = Post.where(user_id: @post.user.id).where.not(shrine_id: @post.shrine.id).includes(:shrine, :post_images)
+    shrine_posts = Post.where(shrine_id: @post.shrine.id)
+    @other_user_posts = shrine_posts.where.not(user_id: @post.user.id)
+  end
+
   def new
     @post = Post.new
     @shrine = Shrine.find(params[:shrine_id])
