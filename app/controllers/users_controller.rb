@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @user = current_user
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:shrine_id)
     @bookmark_shrines = Shrine.find(bookmarks)
+    @posts = @user.posts.includes(:shrine)
   end
 
   def edit

@@ -6,25 +6,38 @@
     <%= csp_meta_tag %>
     <%= include_gon(:init => true) %>
     <script src="https://kit.fontawesome.com/f8d37013c4.js" crossorigin="anonymous"></script>
-    <!--%= javascript_include_tag 'jquery.japan-map.min.js' %>-->
+    <%= javascript_include_tag 'jquery.japan-map.min.js' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-    <%= render "searches/form" %>
-    <%= yield %>
+    <header class="bg-dark">
+      <nav class="navbar navbar-expand-md" style="height: 200;">
+        <div class="container">
+          <a class="navbar-brand" href="/"><i class="fas fa-torii-gate text-white"></i></a>
+          <div class="mr-auto">
+            <ul class="navbar-nav">
+              <% if user_signed_in? %>
+                <li><%= link_to "マイページ", user_path(current_user), class:"nav-link text-white font-weight-bold mr-1" %></li>
+                <li><%= link_to "神社一覧", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+                <li><%= link_to "地方から", about_path, class:"nav-link text-white font-weight-bold mr-1"  %></li>
+                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link text-white font-weight-bold mr-1"  %></li>
+              <% else %>
+                <li><%= link_to "神社一覧", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+                <li><%= link_to "新規登録", new_user_registration_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+                <li><%= link_to "ログイン", new_user_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+              <% end %>
+            </ul>
+          </div>
+          <div>
+            <%= render "searches/form" %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
