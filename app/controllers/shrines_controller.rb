@@ -9,5 +9,6 @@ class ShrinesController < ApplicationController
     gon.shrine = @shrine
     gon.shrines = @near_shrine
     @posts = Post.where(shrine_id: @shrine.id).includes(:user, :shrine, :post_images)
+    impressionist(@shrine, nil, unique: [:ip_address])
   end
 end

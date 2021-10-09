@@ -7,6 +7,7 @@ class Shrine < ApplicationRecord
   has_many :gods, through: :shrine_gods
   has_many :shrine_images, dependent: :destroy
   accepts_attachments_for :shrine_images, attachment: :image
+  is_impressionable counter_cache: true
 
   geocoded_by :address
   after_validation :geocode

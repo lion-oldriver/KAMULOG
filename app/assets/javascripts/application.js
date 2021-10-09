@@ -90,7 +90,8 @@ $(function(){
         {code : 8, name: "九州地方",   color: "#ff9999", hoverColor: "#ffbdbd", prefectures: [40,41,42,43,44,45,46]},
         {code : 9, name: "沖縄地方",   color: "#eb98ff", hoverColor: "#f5c9ff", prefectures: [47]},
     ];
-    $("#map-container").japanMap({
+    $("#back_btn").hide();
+    $("#map-container").empty().japanMap({
         width: 650,
         selection: "prefecture",
         areas: areas,
@@ -106,6 +107,56 @@ $(function(){
         fontShadowColor : "white",
         onSelect : function(data){
             window.location.href = "https://a041e2ed356944bfb35bab6d9b780888.vfs.cloud9.ap-northeast-1.amazonaws.com/search?content=" + data.name + "&model=tag";
-        }
+       }
     });
+});
+
+$(document).ready(function () {
+  $("#main-visual").skippr({
+    // スライドショーの変化 ("fade" or "slide")
+    transition : 'slide',
+    // 変化に係る時間(ミリ秒)
+    speed : 1000,
+    // easingの種類
+    easing : 'easeOutQuart',
+    // ナビゲーションの形("block" or "bubble")
+    navType : 'none',
+    // 子要素の種類("div" or "img")
+    childrenElementType : 'div',
+    // ナビゲーション矢印の表示(trueで表示)
+    arrows : false,
+    // スライドショーの自動再生(falseで自動再生なし)
+    autoPlay : true,
+    // 自動再生時のスライド切替間隔(ミリ秒)
+    autoPlayDuration : 3000,
+    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+    keyboardOnAlways : true,
+    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+    hidePrevious : false
+  });
+});
+
+$(document).ready(function () {
+  $("#shrine-images").skippr({
+    // スライドショーの変化 ("fade" or "slide")
+    transition : 'fade',
+    // 変化に係る時間(ミリ秒)
+    speed : 1000,
+    // easingの種類
+    easing : 'easeOutQuart',
+    // ナビゲーションの形("block" or "bubble")
+    navType : 'none',
+    // 子要素の種類("div" or "img")
+    childrenElementType : 'div',
+    // ナビゲーション矢印の表示(trueで表示)
+    arrows : false,
+    // スライドショーの自動再生(falseで自動再生なし)
+    autoPlay : true,
+    // 自動再生時のスライド切替間隔(ミリ秒)
+    autoPlayDuration : 3000,
+    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+    keyboardOnAlways : true,
+    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+    hidePrevious : false
+  });
 });
