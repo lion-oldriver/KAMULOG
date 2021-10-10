@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     bookmarks = Bookmark.where(user_id: current_user.id).pluck(:shrine_id)
     @bookmark_shrines = Shrine.find(bookmarks)
     @posts = @user.posts.includes(:shrine)
+    @followings = @user.followings
   end
 
   def edit

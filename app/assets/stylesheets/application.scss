@@ -14,3 +14,22 @@
  *= require_self
  */
  @import "bootstrap";
+
+
+.drop-hover:hover > .dropdown-menu {
+  display: block !important;
+}
+
+.dropright .dropdown-menu{
+  padding: 0;
+  margin-left: 0;
+}
+
+.tag {
+ background:#eee;
+ border:none;
+ color: #666;
+ padding: 3px;
+ margin: 3px;
+ border-radius: 3px;
+}

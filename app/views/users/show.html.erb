@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h3>My Page</h3>
+      <h2>マイページ</h2>
       <div class="d-flex">
         <h5>登録情報</h5>
-        <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success" %>
+        <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success ml-3" %>
       </div>
       <table class="table table-bordered">
         <tr>
@@ -29,25 +29,41 @@
               <div class="card-body">
                 <h4 class="card-title"><%= link_to post.shrine.name, shrine_path(post.shrine) %></h4>
                 <p class="card-text"><%= post.body.truncate(50) %></p>
-                <p class="card-text"><small class="text-muted"><%= post.visit_date %></small></p>
+                <p class="card-text"><small class="text-muted">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small></p>
               </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="col-4 border">
-      <h3 class="border-bottom">ブックマーク</h3>
-      <% if @bookmark_shrines.present? %>
-        <% @bookmark_shrines.each do |shrine| %>
-          <div class="media py-2 border-bottom">
-            <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50 %>
-            <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
-          </div>
+
+    <div class="col-4">
+      <div class="border">
+        <h3 class="border-bottom">ブックマーク</h3>
+        <% if @bookmark_shrines.present? %>
+          <% @bookmark_shrines.each do |shrine| %>
+            <div class="media py-2 border-bottom">
+              <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50, class:"rounded" %>
+              <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
+            </div>
+          <% end %>
+        <% else %>
+          <h5>ブックマークされた神社はありません</h5>
         <% end %>
-      <% else %>
-        <h5>ブックマークされた神社はありません</h5>
-      <% end %>
+      </div>
+      <div class="border my-3">
+        <h3>フォローユーザ一覧</h3>
+        <% if @followings.exists? %>
+          <% @followings.each do |following| %>
+            <div class="media py-2 border-bottom">
+              <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded" %>
+              <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
+            </div>
+          <% end %>
+        <% else %>
+          <p>フォローしているユーザはいません</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

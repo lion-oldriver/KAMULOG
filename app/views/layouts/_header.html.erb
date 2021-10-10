@@ -1,0 +1,29 @@
+<header class="pb-5 mb-5">
+  <nav class="navbar navbar-expand-md bg-dark fixed-top" style="height: 200;">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fas fa-torii-gate text-white"></i></a>
+      <div class="mr-auto">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li><%= link_to "マイページ", user_path(current_user), class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "神社一覧", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li class="nav-link mr-1 dropdown drop-hover"><a class="dropdown-toggle text-white font-weight-bold" data-toggle="dropdown">地域</a>
+              <%= render "layouts/header_area" %>
+            </li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link text-white font-weight-bold mr-1"  %></li>
+          <% else %>
+            <li><%= link_to "神社一覧", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li class="nav-link mr-1 dropdown drop-hover"><a class="dropdown-toggle text-white font-weight-bold" data-toggle="dropdown">地域</a>
+              <%= render "layouts/header_area" %>
+            </li>
+            <li><%= link_to "新規登録", new_user_registration_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <%= render "searches/form" %>
+      </div>
+    </div>
+  </nav>
+</header>

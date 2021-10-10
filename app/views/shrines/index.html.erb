@@ -1,34 +1,64 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <h1>神社一覧</h1>
+    <div class="col-7">
+      <h2>神社一覧</h2>
       <% @shrines.each do |shrine| %>
-      <div class="card shadow p-0 mb-3">
-        <% shrine.shrine_images.first(1).each do |image| %>
-          <%= attachment_image_tag image, :image %>
-        <% end %>
-        <div class="card-body">
-          <h5><%= link_to shrine.name, shrine_path(shrine) %></h5>
-          <p><%= shrine.address %></p>
+        <div class="card shadow p-0 mb-3">
+          <div class="d-flex">
+            <% shrine.shrine_images.first(2).each do |image| %>
+              <%= attachment_image_tag image, :image, style:"width: 48%; height: auto; margin: 1%;" %>
+            <% end %>
+          </div>
+          <div class="card-body p-2 pl-4">
+            <h5><%= link_to shrine.name, shrine_path(shrine) %></h5>
+            <p class="m-0"><%= shrine.address %></p>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= shrine.introduction.truncate(70) %>
+            </li>
+            <li class="list-group-item">
+              <% shrine.gods.each do |god| %>
+                <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"tag text-reset ml-0" %>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <% shrine.tags.each do |tag| %>
+                <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset ml-0" %>
+              <% end %>
+            </li>
+          </ul>
         </div>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <%= shrine.introduction.truncate(50) %>
-          </li>
-          <li class="list-group-item">
-            <% shrine.gods.each do |god| %>
-              <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
-            <% end %>
-          </li>
-          <li class="list-group-item">
-            <% shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
       <% end %>
     </div>
-    <div class="col-4"></div>
+
+    <div class="col-5">
+      <h2>新着投稿<small>(5件)</small></h2>
+      <% @posts.each do |post| %>
+        <div class="card p-2 mb-2">
+          <div class="card-header mb-1 d-flex justify-content-between">
+            <%= link_to  user_path(post.user) do %>
+              <%= attachment_image_tag post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>
+              <%= post.user.name %>
+            <% end %>
+            <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
+          </div>
+          <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
+            <div class="col-12 p-0 d-flex flex-wrap justify-content-between">
+              <% post.post_images.each do |post_image| %>
+                <%= attachment_image_tag post_image, :image, style:"width: 30%;" %>
+              <% end %>
+            </div>
+            <%= post.body.truncate(50) %>
+          <% end %>
+        </div>
+      <% end %>
+      <h2>おすすめタグ<small>(10件)</small></h2>
+        <div class="d-flex flex-wrap border rounded py-2">
+          <% @tags.each do |tag| %>
+            <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset" %>
+          <% end %>
+        </div>
+    </div>
   </div>
 </div>
