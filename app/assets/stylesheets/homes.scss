@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #main-visual{
-  height: 550px;
+  height: 750px;
 }
 
 .main-image1{
-  background-image: url(inari1.jpg);
+  background-image: url(shrine1.jpg);
 }
 
 .main-image2{
@@ -15,9 +15,17 @@
 }
 
 .main-image3{
-  background-image: url(inari3.jpg);
+  background-image: url(shrine3.jpg);
 }
 
 .main-image4{
   background-image: url(shrine4.jpg);
+}
+
+.top-content-light{
+  background-color: #f4f2ee;
+}
+
+.top-content-dark{
+  background-color: #001722;
 }

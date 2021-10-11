@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   def search
     @model = params["model"]
     @content = params["content"]
-    @records = search_for(@model, @content)
+    @records = search_for(@model, @content).includes(:shrine_gods, :gods, :shrine_tags, :tags)
   end
 
 

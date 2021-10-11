@@ -1,25 +1,27 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-7">
       <h2>神社一覧</h2>
       <% @shrines.each do |shrine| %>
         <div class="card shadow p-0 mb-3">
-          <div class="d-flex">
-            <% shrine.shrine_images.first(2).each do |image| %>
-              <%= attachment_image_tag image, :image, style:"width: 48%; height: auto; margin: 1%;" %>
-            <% end %>
-          </div>
-          <div class="card-body p-2 pl-4">
-            <h5><%= link_to shrine.name, shrine_path(shrine) %></h5>
-            <p class="m-0"><%= shrine.address %></p>
-          </div>
+          <%= link_to shrine_path(shrine), {class:"text-reset"} do %>
+            <div class="d-flex">
+              <% shrine.shrine_images.first(2).each do |image| %>
+                <%= attachment_image_tag image, :image, style:"width: 48%; height: auto; margin: 1%;" %>
+              <% end %>
+            </div>
+            <div class="card-body p-2 pl-4">
+              <h5><%= shrine.name %></h5>
+              <p class="m-0"><%= shrine.address %></p>
+            </div>
+          <% end %>
           <ul class="list-group">
             <li class="list-group-item">
               <%= shrine.introduction.truncate(70) %>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item">祭神:
               <% shrine.gods.each do |god| %>
-                <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"tag text-reset ml-0" %>
+                <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset ml-0" %>
               <% end %>
             </li>
             <li class="list-group-item">

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
     resource :bookmarks, only: [:create, :destroy]
   end
-  get "search_tag" => "shrines#search_tag"
   get "search" => "searches#search"
 
   # 管理者側のルーティング

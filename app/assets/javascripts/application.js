@@ -95,11 +95,7 @@ $(function(){
         width: 650,
         selection: "prefecture",
         areas: areas,
-        borderLineColor: "#f2fcff",
-        borderLineWidth : 0.25,
-        lineColor : "#a0a0a0",
-        lineWidth: 1,
-        drawsBoxLine: true,
+        drawsBoxLine: false,
         showsPrefectureName: true,
         prefectureNameType: "short",
         movesIslands : true,
@@ -116,7 +112,7 @@ $(document).ready(function () {
     // スライドショーの変化 ("fade" or "slide")
     transition : 'slide',
     // 変化に係る時間(ミリ秒)
-    speed : 1000,
+    speed : 1200,
     // easingの種類
     easing : 'easeOutQuart',
     // ナビゲーションの形("block" or "bubble")

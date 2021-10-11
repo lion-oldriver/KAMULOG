@@ -5,6 +5,33 @@
   <div class="main-image4"></div>
 </div>
 
-<div id="map-container">
-  <div class="canvas"></div>
+<div class="top-content-light d-flex">
+  <div class="w-50"><%= image_tag "omairi.jpg", class:"w-100" %></div>
+  <div class="d-flex flex-column align-items-center m-auto w-25">
+    <h2>参拝する</h2>
+    <p class="mt-2 mb-4">心を込めて祈りを捧げるにあたり丁寧な作法を心がけたいことは自然なことです。作法に込められた「心」についても理解いただければ幸いです。</p>
+    <p><%= link_to "詳しく知る >" ,about_path, class:"btn btn-outline-success rounded-pill" %></p>
+  </div>
+</div>
+
+<div class="top-content-dark d-flex">
+  <div class="d-flex flex-column align-items-center m-auto w-25 text-white">
+    <h2>共有する</h2>
+  </div>
+  <div class="w-50 d-flex flex-wrap">
+    <%= image_tag "inari1.jpg", class:"w-50" %>
+    <%= image_tag "inari2.jpg", class:"w-50" %>
+    <%= image_tag "inari3.jpg", class:"w-50" %>
+    <%= image_tag "inari4.jpg", class:"w-50" %>
+  </div>
+</div>
+
+<div class="top-content-light p-3 d-flex">
+  <div id="map-container" class="w-50">
+    <div class="canvas"></div>
+  </div>
+  <div class="d-flex flex-column align-items-center m-auto w-25">
+    <h2>見つける</h2>
+    <p>都道府県・祭神・御利益で見つけることができます</p>
+  </div>
 </div>

@@ -1,28 +1,32 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:shrine_id)
+    bookmarks = Bookmark.where(user_id: @user.id).pluck(:shrine_id)
     @bookmark_shrines = Shrine.find(bookmarks)
-    @posts = @user.posts.includes(:shrine)
     @followings = @user.followings
+    if params[:sort] == "latest"
+      @posts = @user.posts.order(visit_date: :desc).includes(:shrine)
+    else
+      @posts = @user.posts.includes(:shrine)
+    end
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
   end
 
   def cation
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def hide
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path

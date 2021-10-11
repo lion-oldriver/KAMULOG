@@ -1,10 +1,12 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-8">
       <h2>マイページ</h2>
       <div class="d-flex">
         <h5>登録情報</h5>
-        <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success ml-3" %>
+        <% if @user == current_user %>
+          <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success ml-3" %>
+        <% end %>
       </div>
       <table class="table table-bordered">
         <tr>
@@ -21,6 +23,8 @@
         </tr>
       </table>
       <h3>参拝記録</h3>
+      <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> |
+      <%= link_to "古い順", user_path( @user) %>
       <% @posts.each do |post| %>
         <div class="card mb-3">
           <div class="row">
@@ -42,7 +46,7 @@
         <h3 class="border-bottom">ブックマーク</h3>
         <% if @bookmark_shrines.present? %>
           <% @bookmark_shrines.each do |shrine| %>
-            <div class="media py-2 border-bottom">
+            <div class="media py-2 ml-1 border-bottom">
               <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50, class:"rounded" %>
               <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
             </div>
@@ -52,10 +56,10 @@
         <% end %>
       </div>
       <div class="border my-3">
-        <h3>フォローユーザ一覧</h3>
+        <h3 class="border-bottom">フォローユーザ一覧</h3>
         <% if @followings.exists? %>
           <% @followings.each do |following| %>
-            <div class="media py-2 border-bottom">
+            <div class="media py-2  border-bottom">
               <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded" %>
               <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
             </div>

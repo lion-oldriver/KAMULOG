@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-7">
       <div class="card shadow p-0 mb-3">
@@ -17,14 +17,14 @@
           <li class="list-group-item">
             <%= @shrine.introduction %>
           </li>
-          <li class="list-group-item">祭神：
+          <li class="list-group-item">祭神:
             <% @shrine.gods.each do |god| %>
               <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
             <% end %>
           </li>
           <li class="list-group-item">
             <% @shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
+              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset" %>
             <% end %>
           </li>
         </ul>
@@ -51,19 +51,22 @@
     <div class="col-5">
       <div><%= link_to '新規投稿', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-primary" %></div>
       <% @posts.each do |post| %>
-        <div class="card">
-          <%= link_to post.user.name, user_path(post.user) %>
-          <p>参拝日：<%= post.visit_date.strftime("%Y年%m月%d日") %></p>
-          <%= link_to shrine_post_path(post.shrine, post) do %>
-            <div class="col-12 p-0 d-flex flex-wrap">
+        <div class="card p-2 mb-2">
+          <div class="card-header mb-1 d-flex justify-content-between">
+            <%= link_to  user_path(post.user) do %>
+              <%= attachment_image_tag post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>
+              <%= post.user.name %>
+            <% end %>
+            <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
+          </div>
+          <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
+            <div class="col-12 p-0 d-flex flex-wrap justify-content-between">
               <% post.post_images.each do |post_image| %>
-                <%= attachment_image_tag post_image, :image, class:"w-50" %>
+                <%= attachment_image_tag post_image, :image, style:"width: 30%;" %>
               <% end %>
             </div>
             <%= post.body.truncate(50) %>
           <% end %>
-          <%= link_to '編集', edit_shrine_post_path(post.shrine, post), class:"btn btn-sm btn-success col-2" %>
-          <%= link_to '削除', shrine_post_path(post.shrine, post), method: :delete, class:"btn btn-sm btn-danger col-2" %>
         </div>
       <% end %>
     </div>
