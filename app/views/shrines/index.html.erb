@@ -1,5 +1,6 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
+    <% breadcrumb :shrines %>
     <div class="col-7">
       <h2>神社一覧</h2>
       <% @shrines.each do |shrine| %>
@@ -32,6 +33,7 @@
           </ul>
         </div>
       <% end %>
+      <div class="d-flex justify-content-center"><%= paginate @shrines %></div>
     </div>
 
     <div class="col-5">

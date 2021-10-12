@@ -1,13 +1,16 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
+    <% breadcrumb :shrine_post, @post %>
     <div class="col-7">
       <h3><%= link_to @post.shrine.name, shrine_path(@post.shrine), class:"text-reset" %></h3>
       <div class="card">
-        <h5 class="card-header"><%= link_to @post.user.name, user_path(@post.user) %></h5>
-        <div class="d-flex justify-content-between border-bottom px-3">
-          <p>参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
-          <p id="follow"><%= render "users/follow", user: @post.user %></p>
+        <div class="card-header d-flex justify-content-between pb-0">
+          <h5><%= link_to @post.user.name, user_path(@post.user) %></h5>
+          <% if user_signed_in? %>
+            <h5 id="follow"><%= render "users/follow", user: @post.user %></h5>
+          <% end %>
         </div>
+        <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
         <div class="card-body">
           <%= @post.body %>
           <div class="d-flex flex-column mt-4">
@@ -25,7 +28,7 @@
       <% if @other_posts.exists? %>
         <% @other_posts.each do |other_post| %>
           <%= link_to shrine_post_path(other_post.shrine, other_post), class:"text-reset" do %>
-            <div class="card">
+            <div class="card mb-2 p-2">
               <h5><%= other_post.shrine.name %></h5>
               <%= other_post.body.truncate(70) %>
               <div class="d-flex">
@@ -44,7 +47,7 @@
     <div class="col-5">
       <h3>他の人の投稿</h3>
       <% if @other_user_posts.exists? %>
-        <% @other_user_posts.each do |post| %>
+        <% @other_user_posts.limit(5).each do |post| %>
           <div class="card p-2 mb-2">
             <div class="card-header mb-1 d-flex justify-content-between">
               <%= link_to  user_path(post.user) do %>
@@ -54,9 +57,9 @@
               <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
             </div>
             <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
-              <div class="col-12 p-0 d-flex flex-wrap justify-content-between">
+              <div class="col-12 p-0 d-flex flex-wrap">
                 <% post.post_images.each do |post_image| %>
-                  <%= attachment_image_tag post_image, :image, style:"width: 30%;" %>
+                  <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
                 <% end %>
               </div>
               <%= post.body.truncate(50) %>

@@ -13,7 +13,8 @@ class User < ApplicationRecord
   attachment :profile_image
   attachment :image
 
-  validates :name, length: { in: 2..20 }, uniqueness: true
+  validates :name, presence: true, length: { in: 2..20 }, uniqueness: true
+  validates :email, presence: true
 
   def follow(user_id)
     relationships.create(followed_id: user_id)

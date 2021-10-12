@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :caution, :hide]
+
   def show
     @user = User.find(params[:id])
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:shrine_id)
@@ -13,6 +15,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to root_path
+    end
   end
 
   def update

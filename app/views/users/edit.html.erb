@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row">
+    <% breadcrumb :user_edit, @user %>
     <div class="col-8 mx-auto">
       <h3>ユーザ編集画面</h3>
       <%= form_with model: @user, local: true do |f| %>

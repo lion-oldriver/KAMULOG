@@ -29,8 +29,9 @@
           <%= link_to '編集', edit_admin_shrine_path(@shrine), class: "btn btn-sm btn-success" %>
           <%= link_to '削除', admin_shrine_path(@shrine), method: :delete, class: "btn btn-sm btn-danger" %>
         </div>
-          <!--%= @shrine.latitude %>-->
-          <!--%= @shrine.longitude %>-->
+          <%= @shrine.latitude %>
+          <%= @shrine.longitude %>
+          <%= @shrine.impressions_count %>
       </div>
     </div>
   </div>
