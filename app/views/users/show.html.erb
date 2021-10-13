@@ -1,38 +1,34 @@
-<div class="container mt-3">
+<div class="container py-3">
   <div class="row">
     <% breadcrumb :user, @user %>
-    <div class="col-8">
+    <div class="col-lg-8">
       <h2>マイページ</h2>
       <div class="d-flex">
-        <h5>登録情報</h5>
+        <h5 class="m-0 mt-1">登録情報</h5>
         <% if @user == current_user %>
-          <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success ml-3" %>
+          <%= link_to '編集', edit_user_path(@user), class:"btn btn-sm btn-success ml-3 " %>
+        <% else %>
+          <h5 id="follow" class="ml-3 mb-0"><%= render "users/follow", user: @user %></h5>
         <% end %>
       </div>
-      <table class="table table-bordered">
-        <tr>
-          <th>氏名</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>紹介文</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <tr>
-          <th>プロフィール画像</th>
-          <td><%= attachment_image_tag @user, :profile_image, :fill, 50, 50 %></td>
-        </tr>
-      </table>
+      <div class="media mt-2 mb-3">
+        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3" %>
+        <div class="media-body">
+          <h4><%= @user.name %></h4>
+          <%= @user.introduction %>
+        </div>
+      </div>
+
       <h3>参拝記録</h3>
       <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> |
       <%= link_to "古い順", user_path( @user) %>
       <% @posts.each do |post| %>
         <div class="card mb-3">
           <div class="row">
-            <div class="col-4"><%= attachment_image_tag post.post_images.first, :image, :fill,250,170 %></div>
+            <div class="col-4"><%= attachment_image_tag post.post_images.first, :image, class:"w-100" %></div>
             <div class="col-8">
-              <div class="card-body">
-                <h4 class="card-title"><%= link_to post.shrine.name, shrine_path(post.shrine) %></h4>
+              <div class="card-body py-2">
+                <h5 class="card-title"><%= link_to post.shrine.name, shrine_path(post.shrine) %></h5>
                 <p class="card-text"><%= post.body.truncate(50) %></p>
                 <p class="card-text"><small class="text-muted">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small></p>
               </div>
@@ -40,9 +36,10 @@
           </div>
         </div>
       <% end %>
+      <%= paginate @posts %>
     </div>
 
-    <div class="col-4">
+    <div class="col-lg-4 col-md-6">
       <div class="border">
         <h3 class="border-bottom">ブックマーク</h3>
         <% if @bookmark_shrines.present? %>
@@ -57,7 +54,7 @@
         <% end %>
       </div>
       <div class="border my-3">
-        <h3 class="border-bottom">フォローユーザ一覧</h3>
+        <h3 class="border-bottom">フォローユーザ</h3>
         <% if @followings.exists? %>
           <% @followings.each do |following| %>
             <div class="media py-2  border-bottom">

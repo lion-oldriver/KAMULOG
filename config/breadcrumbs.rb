@@ -17,10 +17,16 @@ crumb :shrine_post do |post|
   parent :shrine, post.shrine
 end
 
+crumb :edit_post do |post|
+  link "投稿編集", edit_shrine_post_path(post.shrine, post)
+  parent :shrine_post, post
+end
+
 crumb :new_post do |shrine|
   link "新規投稿", new_shrine_post_path(shrine, shrine.posts)
   parent :shrine, shrine
 end
+
 
 crumb :user do |user|
   link "#{user.name}さんのページ", user_path(user)
@@ -30,4 +36,14 @@ end
 crumb :user_edit do |user|
   link "ユーザ登録情報の編集", edit_user_path(user)
   parent :user, user
+end
+
+crumb :user_caution do |user|
+  link "退会確認", users_caution_path
+  parent :user_edit, current_user
+end
+
+crumb :search do
+  link "検索結果", search_path
+  parent :shrines
 end

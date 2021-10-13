@@ -1,7 +1,7 @@
-<div class="container mt-3">
+<div class="container py-3">
   <div class="row">
     <% breadcrumb :shrines %>
-    <div class="col-7">
+    <div class="col-lg-7">
       <h2>神社一覧</h2>
       <% @shrines.each do |shrine| %>
         <div class="card shadow p-0 mb-3">
@@ -36,7 +36,7 @@
       <div class="d-flex justify-content-center"><%= paginate @shrines %></div>
     </div>
 
-    <div class="col-5">
+    <div class="col-lg-5">
       <h2>新着投稿<small>(5件)</small></h2>
       <% @posts.each do |post| %>
         <div class="card p-2 mb-2">

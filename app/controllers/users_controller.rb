@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @bookmark_shrines = Shrine.find(bookmarks)
     @followings = @user.followings
     if params[:sort] == "latest"
-      @posts = @user.posts.order(visit_date: :desc).includes(:shrine)
+      @posts = @user.posts.order(visit_date: :desc).includes(:shrine).page(params[:page]).per(10)
     else
-      @posts = @user.posts.includes(:shrine)
+      @posts = @user.posts.includes(:shrine).page(params[:page]).per(10)
     end
   end
 
@@ -26,10 +26,6 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  def cation
-    @user = User.find(params[:id])
-  end
-
   def hide
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
@@ -39,7 +35,7 @@ class UsersController < ApplicationController
 
 
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end

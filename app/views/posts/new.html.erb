@@ -1,7 +1,7 @@
-<div class="container mt-5">
+<div class="container py-3">
   <div class="row">
     <% breadcrumb :new_post, @shrine %>
-    <div class="col-9 mx-auto">
+    <div class="col-lg-9 mx-auto">
       <h3>新規投稿</h3>
       <%= form_with model: [@shrine, @post], local: true do |f| %>
         <div class="form-row">
