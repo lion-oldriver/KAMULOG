@@ -1,33 +1,38 @@
-<div class="container">
+<div class="container py-5">
   <div class="row">
-    <div class="col-8">
-      <h1>神社一覧</h1>
-      <% @shrines.each do |shrine| %>
-      <div class="card shadow p-0 mb-3">
-        <% shrine.shrine_images.first(1).each do |image| %>
-          <%= attachment_image_tag image, :image %>
+    <div class="col-12">
+      <h2>神社一覧</h2>
+      <div class="d-flex flex-wrap">
+        <% @shrines.each do |shrine| %>
+          <div class="card shadow p-0 mb-3" style="width: 31%; margin: 0 1%;">
+            <%= link_to admin_shrine_path(shrine), {class:"text-reset"} do %>
+              <% shrine.shrine_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, style:"width: 100%; height: auto; max-height: 230px;" %>
+              <% end %>
+              <div class="card-body">
+                <h5><%= shrine.name %></h5>
+                <p><%= shrine.address %></p>
+              </div>
+            <% end %>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <%= shrine.introduction.truncate(50) %>
+              </li>
+              <li class="list-group-item">
+                <% shrine.gods.each do |god| %>
+                  <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
+                <% end %>
+              </li>
+              <li class="list-group-item">
+                <% shrine.tags.each do |tag| %>
+                  <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         <% end %>
-        <div class="card-body">
-          <h5><%= link_to shrine.name, admin_shrine_path(shrine) %></h5>
-          <p><%= shrine.address %></p>
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <%= shrine.introduction %>
-          </li>
-          <li class="list-group-item">
-            <% shrine.gods.each do |god| %>
-              <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
-            <% end %>
-          </li>
-          <li class="list-group-item">
-            <% shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
-            <% end %>
-          </li>
-        </ul>
+        <div class="d-flex justify-content-center"><%= paginate @shrines %></div>
       </div>
-      <% end %>
     </div>
   </div>
 </div>

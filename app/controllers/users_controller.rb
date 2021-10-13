@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :caution, :hide]
+  before_action :authenticate_user!, except: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
 
   private
+  
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end

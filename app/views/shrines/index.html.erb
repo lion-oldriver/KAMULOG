@@ -48,9 +48,9 @@
             <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
           </div>
           <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
-            <div class="col-12 p-0 d-flex flex-wrap justify-content-between">
+            <div class="col-12 p-0 d-flex flex-wrap">
               <% post.post_images.each do |post_image| %>
-                <%= attachment_image_tag post_image, :image, style:"width: 30%;" %>
+                <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
               <% end %>
             </div>
             <%= post.body.truncate(50) %>
@@ -58,9 +58,9 @@
         </div>
       <% end %>
       <h2>おすすめタグ<small>(10件)</small></h2>
-        <div class="d-flex flex-wrap border rounded py-2">
+        <div class="d-flex flex-wrap border rounded p-2">
           <% @tags.each do |tag| %>
-            <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset" %>
+            <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset mx-2" %>
           <% end %>
         </div>
     </div>

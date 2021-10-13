@@ -1,0 +1,43 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-7">
+      <h3><%= link_to @post.shrine.name, admin_shrine_path(@post.shrine), class:"text-reset" %></h3>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between ">
+          <h5><%= link_to @post.user.name, admin_user_path(@post.user) %></h5>
+          <%= link_to '削除', admin_shrine_post_path(@post.shrine, @post), method: :delete, class:"btn btn-sm btn-danger" %>
+        </div>
+        <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
+        <div class="card-body">
+          <%= @post.body %>
+          <div class="d-flex flex-column mt-4">
+            <% @post.post_images.each do |post_image| %>
+              <%= attachment_image_tag post_image, :image, class:"w-50 rounded mb-4" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <h3><%= @post.user.name %>さんの他の投稿</h3>
+      <% if @other_posts.exists? %>
+        <% @other_posts.each do |other_post| %>
+          <%= link_to admin_shrine_post_path(other_post.shrine, other_post), class:"text-reset" do %>
+            <div class="card mb-2 p-2">
+              <h5 class="border-bottom"><%= other_post.shrine.name %></h5>
+              <%= other_post.body.truncate(70) %>
+              <div class="d-flex">
+                <% other_post.post_images.each do |post_image| %>
+                  <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p>まだ投稿はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

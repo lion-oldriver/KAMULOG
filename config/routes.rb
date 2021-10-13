@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :shrines
+    resources :shrines do
+      resources :posts, only: [:show, :destroy]
+    end
     get "search_tag" => "shrines#search_tag"
   end
 end

@@ -1,0 +1,24 @@
+<header class="pb-5">
+  <nav class="navbar navbar-expand-md bg-dark fixed-top" style="height: 200;">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fas fa-torii-gate text-white"></i></a>
+      <div class="mr-auto">
+        <ul class="navbar-nav">
+          <% if admin_signed_in? %>
+            <li><%= link_to "会員一覧", admin_users_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "神社一覧", admin_shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "神社登録", new_admin_shrine_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-white font-weight-bold mr-1" %></li>
+          <% else %>
+            <li><%= link_to "概要", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "会員としてログイン", new_user_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "ログイン", new_admin_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <%= render "searches/form" %>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 
 
   private
+  
   def post_params
     params.require(:post).permit(:body, :visit_date, post_images_images: [])
   end

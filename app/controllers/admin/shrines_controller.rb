@@ -1,10 +1,17 @@
 class Admin::ShrinesController < ApplicationController
+  layout 'admin_application'
+  before_action :authenticate_admin!
+
   def index
-    @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags)
+    @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(12)
   end
 
   def show
     @shrine = Shrine.find(params[:id])
+    @near_shrine = @shrine.nearbys(2, units: :km)
+    gon.shrine = @shrine
+    gon.shrines = @near_shrine
+    @posts = Post.where(shrine_id: @shrine.id).order(visit_date: :desc).includes(:user, :shrine, :post_images).page(params[:page]).per(8)
   end
 
   def edit
@@ -44,14 +51,9 @@ class Admin::ShrinesController < ApplicationController
   end
 
   def destroy
-    @shrine = Shrine.find(params[:id])
-    @shrine.destroy
+    shrine = Shrine.find(params[:id])
+    shrine.destroy
     redirect_to admin_shrines_path
-  end
-
-  def search_tag
-    @tag = Tag.find_by(tag_name: params[:tag_name])
-    @shrines = @tag.shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags)
   end
 
 
