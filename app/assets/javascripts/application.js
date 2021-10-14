@@ -25,6 +25,7 @@ var map;
 var marker = [];
 var infoWindow = [];
 var markerData = gon.shrines;
+const KEY = gon.api_key;
 
 function initMap() {
   // geocoderを初期化
@@ -44,6 +45,30 @@ function initMap() {
       lng: gon.shrine.longitude
     },
     map: map
+  });
+
+  // var strXml = 'http://map.simpleapi.net/stationapi?x=' + gon.shrine.longitude + '&y=' + gon.shrine.latitude
+  // var parser = new DOMParser();
+  // let xmlData  = parser.parseFromString(strXml,"text/xml");
+  // console.log(xmlData);
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + KEY + "&location=" + gon.shrine.latitude + ',' + gon.shrine.longitude + '&radius=2000&language=ja&keyword=駅',
+    type: 'GET',
+    dataType: 'json',
+    cache: false,
+    crossDomain: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    // 成功時の処理
+    success: function(data) {
+      var name = $(item).find('name').text();
+      console.log(name)
+    },
+    // 失敗時の処理
+    error: function(err) {
+      console.log(err);
+    }
   });
 
   // 半径1km以内の登録された場所のデータを繰り返し処理で取得
@@ -106,7 +131,7 @@ $(function(){
        }
     });
 });
-
+// トップページのメインビジュアル用
 $(document).ready(function () {
   $("#main-visual").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -131,28 +156,18 @@ $(document).ready(function () {
     hidePrevious : false
   });
 });
-
+// 神社詳細ページの神社画像用
 $(document).ready(function () {
   $("#shrine-images").skippr({
-    // スライドショーの変化 ("fade" or "slide")
     transition : 'fade',
-    // 変化に係る時間(ミリ秒)
     speed : 1000,
-    // easingの種類
     easing : 'easeOutQuart',
-    // ナビゲーションの形("block" or "bubble")
     navType : 'none',
-    // 子要素の種類("div" or "img")
     childrenElementType : 'div',
-    // ナビゲーション矢印の表示(trueで表示)
     arrows : false,
-    // スライドショーの自動再生(falseで自動再生なし)
     autoPlay : true,
-    // 自動再生時のスライド切替間隔(ミリ秒)
     autoPlayDuration : 3000,
-    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
     keyboardOnAlways : true,
-    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
     hidePrevious : false
   });
 });

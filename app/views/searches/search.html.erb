@@ -9,7 +9,7 @@
             <%= link_to shrine_path(shrine), {class:"text-reset"} do %>
               <div class="d-flex">
                 <% shrine.shrine_images.first(2).each do |image| %>
-                  <%= attachment_image_tag image, :image, style:"width: 48%; height: auto; margin: 1%;" %>
+                  <%= attachment_image_tag image, :image, class:"search-image" %>
                 <% end %>
               </div>
               <div class="card-body p-2 pl-4">

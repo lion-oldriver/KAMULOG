@@ -14,7 +14,14 @@
  *= require_self
  */
  @import "bootstrap";
+ @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&display=swap');
 
+body{
+  font-family: serif, sans-serif;
+  h2, h3{
+  font-family: 'Shippori Mincho B1', serif;
+  }
+}
 
 .drop-hover:hover > .dropdown-menu {
   display: block !important;

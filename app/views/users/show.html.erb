@@ -2,7 +2,7 @@
   <div class="row">
     <% breadcrumb :user, @user %>
     <div class="col-lg-8">
-      <h2>マイページ</h2>
+      <h2 class="font_shppori">マイページ</h2>
       <div class="d-flex">
         <h5 class="m-0 mt-1">登録情報</h5>
         <% if @user == current_user %>
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <h3>参拝記録</h3>
+      <h3 class="font_shppori">参拝記録</h3>
       <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> |
       <%= link_to "古い順", user_path( @user) %>
       <% @posts.each do |post| %>
@@ -40,32 +40,32 @@
     </div>
 
     <div class="col-lg-4 col-md-6">
-      <div class="border">
-        <h3 class="border-bottom">ブックマーク</h3>
-        <% if @bookmark_shrines.present? %>
+      <h3 class="font_shppori">ブックマーク</h3>
+      <% if @bookmark_shrines.present? %>
+        <div class="border">
           <% @bookmark_shrines.each do |shrine| %>
             <div class="media py-2 ml-1 border-bottom">
               <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50, class:"rounded" %>
               <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
             </div>
           <% end %>
-        <% else %>
-          <h5>ブックマークされた神社はありません</h5>
-        <% end %>
-      </div>
-      <div class="border my-3">
-        <h3 class="border-bottom">フォローユーザ</h3>
-        <% if @followings.exists? %>
+        </div>
+      <% else %>
+        <h5>ブックマークされた神社はありません</h5>
+      <% end %>
+      <h3 class="font_shppori mt-3">フォローユーザ</h3>
+      <% if @followings.present? %>
+        <div class="border">
           <% @followings.each do |following| %>
-            <div class="media py-2  border-bottom">
+            <div class="media py-2 ml-1 border-bottom">
               <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded" %>
               <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
             </div>
           <% end %>
-        <% else %>
-          <p>フォローしているユーザはいません</p>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <p>フォローしているユーザはいません</p>
+      <% end %>
     </div>
   </div>
 </div>
