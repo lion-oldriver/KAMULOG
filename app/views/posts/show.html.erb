@@ -5,7 +5,12 @@
       <h3><%= link_to @post.shrine.name, shrine_path(@post.shrine), class:"text-reset" %></h3>
       <div class="card">
         <div class="card-header d-flex justify-content-between pb-0">
-          <h5><%= link_to @post.user.name, user_path(@post.user), class:"text-reset" %></h5>
+          <h5>
+            <%= link_to user_path(@post.user), class:"text-reset" do %>
+              <%= attachment_image_tag @post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>
+              <%= @post.user.name %>
+            <% end %>
+          </h5>
           <% if user_signed_in? %>
             <h5 id="follow"><%= render "users/follow", user: @post.user %></h5>
           <% end %>

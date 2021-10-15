@@ -11,8 +11,8 @@
           <h5 id="follow" class="ml-3 mb-0"><%= render "users/follow", user: @user %></h5>
         <% end %>
       </div>
-      <div class="media mt-2 mb-3">
-        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3" %>
+      <div class="media border p-1 mt-2 mb-3 bg-light">
+        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3 mt-1" %>
         <div class="media-body">
           <h4><%= @user.name %></h4>
           <%= @user.introduction %>

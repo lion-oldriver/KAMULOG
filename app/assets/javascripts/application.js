@@ -51,25 +51,7 @@ function initMap() {
   // var parser = new DOMParser();
   // let xmlData  = parser.parseFromString(strXml,"text/xml");
   // console.log(xmlData);
-  $.ajax({
-    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=" + KEY + "&location=" + gon.shrine.latitude + ',' + gon.shrine.longitude + '&radius=2000&language=ja&keyword=駅',
-    type: 'GET',
-    dataType: 'json',
-    cache: false,
-    crossDomain: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*"
-    },
-    // 成功時の処理
-    success: function(data) {
-      var name = $(item).find('name').text();
-      console.log(name)
-    },
-    // 失敗時の処理
-    error: function(err) {
-      console.log(err);
-    }
-  });
+
 
   // 半径1km以内の登録された場所のデータを繰り返し処理で取得
   for (var i = 0; i < markerData.length; i++) {

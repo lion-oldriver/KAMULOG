@@ -32,18 +32,33 @@
           </li>
         </ul>
       </div>
-      <div id="map" style="width: 100%; height: 350px;">
+      <div id="map" style="width: 100%; height: 350px;"> <!--Google Mapを表示する-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
-      <table class="table">
+      <table class="table table-bordered">
         <tbody>
           <tr>
             <th>住所</th>
             <td><%= @shrine.address %></td>
           </tr>
           <tr>
-            <th>最寄り駅</th>
-            <td></td>
+            <th>近くの神社</th>
+            <td>
+              <% unless @near_shrine.length == 0 %> <!--近くの神社の配列内にデータが存在するか判断-->
+                <ul class="list-unstyled">
+                  <% i = 0 %>
+                  <% while i < @near_shrine.length do %>
+                    <li>
+                      <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %>
+                      <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km
+                      <% i += 1 %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p>近くの神社がありません</p>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -54,26 +69,30 @@
         <h3 class="m-0">最近の投稿</h3>
         <%= link_to '投稿する', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-outline-success rounded-pill ml-3" %>
       </div>
-      <% @posts.each do |post| %>
-        <div class="card p-2 mb-2">
-          <div class="card-header mb-1 d-flex justify-content-between">
-            <%= link_to  user_path(post.user) do %>
-              <%= attachment_image_tag post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>
-              <%= post.user.name %>
-            <% end %>
-            <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
-          </div>
-          <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
-            <div class="col-12 p-0 d-flex flex-wrap">
-              <% post.post_images.each do |post_image| %>
-                <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+      <% if @posts.exists? %>
+        <% @posts.each do |post| %>
+          <div class="card p-2 mb-2">
+            <div class="card-header mb-1 d-flex justify-content-between">
+              <%= link_to  user_path(post.user) do %>
+                <%= attachment_image_tag post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>
+                <%= post.user.name %>
               <% end %>
+              <small class="text-muted pt-2">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small>
             </div>
-            <%= post.body.truncate(50) %>
-          <% end %>
-        </div>
+            <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
+              <div class="col-12 p-0 d-flex flex-wrap">
+                <% post.post_images.each do |post_image| %>
+                  <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+                <% end %>
+              </div>
+              <%= post.body.truncate(50) %>
+            <% end %>
+          </div>
+        <% end %>
+        <%= paginate @posts %>
+      <% else %>
+        <p>まだ投稿はありません</p>
       <% end %>
-      <%= paginate @posts %>
     </div>
   </div>
 </div>
