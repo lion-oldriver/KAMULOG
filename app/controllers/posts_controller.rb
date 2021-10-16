@@ -20,8 +20,12 @@ class PostsController < ApplicationController
     @shrine = Shrine.find(params[:shrine_id])
     post = current_user.posts.new(post_params)
     post.shrine_id = @shrine.id
-    post.save
-    redirect_to shrine_path(@shrine)
+    if post.save
+      redirect_to shrine_path(@shrine)
+    else
+      flash[:notice] = "未記入の項目があります"
+      redirect_to new_shrine_post_path(@shrine, @shrine.posts)
+    end
   end
 
   def edit
@@ -38,7 +42,7 @@ class PostsController < ApplicationController
     if post.update(post_params)
       redirect_to shrine_path(shrine)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -51,7 +55,7 @@ class PostsController < ApplicationController
 
 
   private
-  
+
   def post_params
     params.require(:post).permit(:body, :visit_date, post_images_images: [])
   end

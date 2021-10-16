@@ -29,7 +29,7 @@
             <div class="col-8">
               <div class="card-body py-2">
                 <h5 class="card-title"><%= link_to post.shrine.name, shrine_path(post.shrine) %></h5>
-                <p class="card-text"><%= post.body.truncate(50) %></p>
+                <p class="card-text"><%= link_to post.body.truncate(50), shrine_post_path(post.shrine, post), class:"text-reset" %></p>
                 <p class="card-text"><small class="text-muted">参拝日:<%= post.visit_date.strftime("%Y年%m月%d日") %></small></p>
               </div>
             </div>

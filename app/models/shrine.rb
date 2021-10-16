@@ -9,6 +9,10 @@ class Shrine < ApplicationRecord
   accepts_attachments_for :shrine_images, attachment: :image
   is_impressionable counter_cache: true
 
+  validates :name, presence: true, uniqueness: true
+  validates :address, presence: true
+  validates :introduction, presence: true
+
   geocoded_by :address
   after_validation :geocode
 

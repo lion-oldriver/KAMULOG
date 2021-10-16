@@ -4,6 +4,6 @@ FactoryBot.define do
     introduction {Faker::Lorem.characters(number: 30) }
     email { Faker::Internet.email }
     password { Faker::Lorem.characters(number: 6) }
-    image {Rack::Test::UploadedFile.new(File.join(Rails.root, 'app/assets/images/no_image.jpg')) }
+    profile_image {Rack::Test::UploadedFile.new(File.join(Rails.root, 'app/assets/images/no_image.jpg')) }
   end
 end

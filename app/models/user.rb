@@ -14,6 +14,7 @@ class User < ApplicationRecord
   attachment :image
 
   validates :name, presence: true, length: { in: 2..20 }, uniqueness: true
+  validates :introduction, length: { maximum: 200 }
   validates :email, presence: true
 
   def follow(user_id)
