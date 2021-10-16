@@ -3,7 +3,7 @@
     <% breadcrumb :shrine_post, @post %>
     <div class="col-lg-7">
       <h3><%= link_to @post.shrine.name, shrine_path(@post.shrine), class:"text-reset" %></h3>
-      <div class="card">
+      <div class="card shadow">
         <div class="card-header d-flex justify-content-between pb-0">
           <h5>
             <%= link_to user_path(@post.user), class:"text-reset" do %>
@@ -33,7 +33,7 @@
       <% if @other_posts.exists? %>
         <% @other_posts.each do |other_post| %>
           <%= link_to shrine_post_path(other_post.shrine, other_post), class:"text-reset" do %>
-            <div class="card mb-2 p-2">
+            <div class="card shadow mb-2 p-2">
               <h5><%= other_post.shrine.name %></h5>
               <%= other_post.body.truncate(70) %>
               <div class="d-flex">
@@ -53,7 +53,7 @@
       <h3>他の人の投稿</h3>
       <% if @other_user_posts.exists? %>
         <% @other_user_posts.limit(5).each do |post| %>
-          <div class="card p-2 mb-2">
+          <div class="card shadow p-2 mb-2">
             <div class="card-header mb-1 d-flex justify-content-between">
               <%= link_to  user_path(post.user) do %>
                 <%= attachment_image_tag post.user, :profile_image, :fill,35,35, class:"rounded-circle" %>

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 mx-auto">
       <h3>会員一覧</h3>
-      <table class="table table-bordered table-hover mt-4">
+      <table class="table table-bordered table-hover bg-light mt-4">
         <thead>
           <tr>
             <th>ID</th>
@@ -19,7 +19,7 @@
               <td><%= user.email %></td>
               <td>
                 <% if user.is_deleted %>
-                  <p class='text-secondary'>退会</p>
+                  <p class='text-danger'>退会</p>
                 <% else %>
                   <p class='text-success'>有効</p>
                 <% end %>

@@ -1,27 +1,23 @@
-<div>
-  <div>
-    <div class="offset-2 mt-5">
-      <h4 class="d-inline" style='text-shadow: 1px 2px 3px #808080;'>ログイン</h4>
-      <div class="mx-2 my-4"><h5 class="d-inline bg-light">会員の方はこちらからログイン</h5></div>
-      <p class="text-danger"><%= flash[:error] %></p>
-      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div class="field">
-          <%= f.label :メールアドレス, class:"col-2 pl-0" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: 40, class:'px-1'%>
-        </div>
-
-        <div class="field my-2">
-          <%= f.label :パスワード,class:"col-2 pl-0" %>
-          <%= f.password_field :password, autocomplete: "current-password", size: 40, class:'px-1'%>
-        </div>
-
-        <div class="actions offset-2 my-4">
-          <%= f.submit "ログイン", class:"btn btn-sm btn-primary col-1" %>
-        </div>
-      <% end %>
-
-      <h5 class="d-inline m-3">会員登録がお済みでない方</h5>
-      <p class="offset-1 mt-4"><%= link_to 'こちら', new_user_registration_path %>から新規登録を行ってください。</p>
+<div class="offset-2 my-5" style="height: 600px;">
+  <h3 class="d-inline" style='text-shadow: 1px 2px 3px #808080;'>ログイン</h3>
+  <h5 class="mx-2 my-4">会員の方はこちらからログイン</h5>
+  <p class="text-danger"><%= flash[:error] %></p>
+  <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+    <div class="field">
+      <%= f.label :メールアドレス, class:"col-2 pl-0" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: 40, class:'px-1'%>
     </div>
-  </div>
+
+    <div class="field my-2">
+      <%= f.label :パスワード,class:"col-2 pl-0" %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", size: 40, class:'px-1'%>
+    </div>
+
+    <div class="actions offset-3 my-4">
+      <%= f.submit "ログイン", class:"btn btn-outline-primary" %>
+    </div>
+  <% end %>
+
+  <h5 class="d-inline m-3">会員登録がお済みでない方</h5>
+  <p class="offset-1 mt-4"><%= link_to 'こちら', new_user_registration_path %>から新規登録を行ってください。</p>
 </div>

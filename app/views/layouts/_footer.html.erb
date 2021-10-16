@@ -1,0 +1,12 @@
+<footer class="footer">
+  <div class="container pt-2 pb-3">
+    <a class="d-flex justify-content-center" href="/"><%= image_tag "logo_reverse.png", size:"100x50" %></a>
+    <div class="d-flex justify-content-center text-white">
+      <%= link_to "トップ", root_path, class:"text-white mr-3" %>|
+      <% if user_signed_in? %>
+        <%= link_to "マイページ", user_path(current_user), class:"text-white mx-3" %>|
+      <% end %>
+      <%= link_to "神社一覧", shrines_path, class:"text-white ml-3" %>
+    </div>
+  </div>
+</footer>

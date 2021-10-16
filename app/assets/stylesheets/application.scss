@@ -18,10 +18,14 @@
 
 body{
   font-family: serif, sans-serif;
-  background-image: url(09.jpg);
+  background-image: url(background.jpg);
   h2, h3{
   font-family: 'Shippori Mincho B1', serif;
   }
+}
+
+.navbar{
+  background-color: #202020;
 }
 
 .drop-hover:hover > .dropdown-menu {
@@ -64,4 +68,8 @@ body{
       border: gray;
       color: #000;
     }
+}
+
+.footer{
+  background-color: #565656;
 }
