@@ -16,7 +16,7 @@
               </li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link text-white font-weight-bold mr-1" %></li>
             <% else %>
-              <li><%= link_to "概要", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+              <li><%= link_to "概要", about_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
               <li class="nav-link mr-1 dropdown drop-hover"><a class="dropdown-toggle text-white font-weight-bold" data-toggle="dropdown">神社</a>
                 <%= render "layouts/header_shrine" %>
               </li>

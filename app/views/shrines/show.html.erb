@@ -67,7 +67,7 @@
     <div class="col-lg-5">
       <div class="d-flex mb-3">
         <h3 class="m-0">最近の投稿</h3>
-        <%= link_to '投稿する', new_shrine_post_path(@shrine, @shrine.posts), class:"btn btn-sm btn-outline-success rounded-pill ml-3 mt-1" %>
+        <%= link_to '投稿する', new_shrine_post_path(@shrine), class:"btn btn-sm btn-outline-success rounded-pill ml-3 mt-1" %>
       </div>
       <% if @posts.exists? %>
         <% @posts.each do |post| %>
