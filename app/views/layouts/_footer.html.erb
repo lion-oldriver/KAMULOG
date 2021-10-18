@@ -3,6 +3,7 @@
     <a class="d-flex justify-content-center" href="/"><%= image_tag "logo_reverse.png", size:"100x50" %></a>
     <div class="d-flex justify-content-center text-white">
       <%= link_to "トップ", root_path, class:"text-white mr-3" %>|
+      <%= link_to "参拝作法", manner_path, class:"text-white mx-3" %>|
       <% if user_signed_in? %>
         <%= link_to "マイページ", user_path(current_user), class:"text-white mx-3" %>|
       <% end %>

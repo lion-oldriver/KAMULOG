@@ -2,6 +2,11 @@ crumb :top do
   link "トップ", root_path
 end
 
+crumb :manner do
+  link "参拝作法", manner_path
+  parent :top
+end
+
 crumb :shrines do
   link "神社一覧", shrines_path
   parent :top

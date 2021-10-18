@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: "homes#top"
-  get "home/about" => "homes#about", as: "about"
+  get "home/manner" => "homes#manner", as: "manner"
   get "users/caution" => "users#caution"
   put "users/hide" => "users#hide", as: "users_hide"
   resources :users, only: [:show, :edit, :update] do

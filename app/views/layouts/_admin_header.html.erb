@@ -10,7 +10,7 @@
             <li><%= link_to "神社登録", new_admin_shrine_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-white font-weight-bold mr-1" %></li>
           <% else %>
-            <li><%= link_to "概要", shrines_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
+            <li><%= link_to "参拝作法", manner_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
             <li><%= link_to "会員としてログイン", new_user_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
             <li><%= link_to "ログイン", new_admin_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
           <% end %>

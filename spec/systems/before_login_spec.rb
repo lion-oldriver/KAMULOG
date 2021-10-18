@@ -23,9 +23,9 @@ describe 'トップページ' do
         logo_link = find_all('a')[0].native.inner_text
         expect(logo_link).to match("")
       end
-      it '概要のリンクはあるか' do
-        about_link = find_all('a')[1].native.inner_text
-        expect(about_link).to match(/概要/i)
+      it '参拝作法のリンクはあるか' do
+        manner_link = find_all('a')[1].native.inner_text
+        expect(manner_link).to match(/参拝作法/i)
       end
       it '神社のリンクはあるか' do
         shrine_link = find_all('a')[2].native.inner_text
@@ -49,10 +49,10 @@ describe 'トップページ' do
         click_link logo_link, match: :first
         is_expected.to eq '/'
       end
-      it '概要のリンクは正しいか' do
-        about_link = find_all('a')[1].native.inner_text
-        click_link about_link
-        is_expected.to eq '/home/about'
+      it '参拝作法のリンクは正しいか' do
+        manner_link = find_all('a')[1].native.inner_text
+        click_link manner_link, match: :first
+        is_expected.to eq '/home/manner'
       end
       it '神社のリンクはあるか' do
         shrine_link = find_all('a')[2].native.inner_text
@@ -175,9 +175,9 @@ describe 'トップページ' do
         my_page_link = find_all('a')[1].native.inner_text
         expect(my_page_link).to match(/マイページ/i)
       end
-      it '概要のリンクがあるか' do
-        about_link = find_all('a')[2].native.inner_text
-        expect(about_link).to match(/概要/i)
+      it '参拝作法のリンクがあるか' do
+        manner_link = find_all('a')[2].native.inner_text
+        expect(manner_link).to match(/参拝作法/i)
       end
       it '神社のリンクがあるか' do
         shrine_link = find_all('a')[3].native.inner_text
@@ -202,10 +202,10 @@ describe 'トップページ' do
         click_link my_page_link, match: :first
         is_expected.to eq '/users/' + user.id.to_s
       end
-      it '概要のリンクは正しいか' do
-        about_link = find_all('a')[2].native.inner_text
-        click_link about_link
-        is_expected.to eq '/home/about'
+      it '参拝作法のリンクは正しいか' do
+        manner_link = find_all('a')[2].native.inner_text
+        click_link manner_link, match: :first
+        is_expected.to eq '/home/manner'
       end
       it '神社のリンクはあるか' do
         shrine_link = find_all('a')[3].native.inner_text
