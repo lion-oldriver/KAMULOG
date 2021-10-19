@@ -18,3 +18,4 @@ module Portfolio
     config.i18n.default_locale = :ja
   end
 end
+Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg *.otf *.png *.jpg *.jpeg *.gif vendor.css vendor.js )
