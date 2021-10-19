@@ -75,3 +75,7 @@ gem 'geocoder'
 gem 'dotenv-rails'
 gem 'gon'
 gem 'gretel'
+
+group :production do
+  gem 'mysql2'
+end
