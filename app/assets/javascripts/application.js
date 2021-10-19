@@ -25,7 +25,7 @@ var map;
 var marker = [];
 var infoWindow = [];
 var markerData = gon.shrines;
-var KEY = gon.api_key;
+const KEY = gon.api_key;
 
 function initMap() {
   // geocoderを初期化
