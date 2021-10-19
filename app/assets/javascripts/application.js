@@ -25,7 +25,7 @@ var map;
 var marker = [];
 var infoWindow = [];
 var markerData = gon.shrines;
-const KEY = gon.api_key;
+var KEY = gon.api_key;
 
 function initMap() {
   // geocoderを初期化
@@ -46,12 +46,6 @@ function initMap() {
     },
     map: map
   });
-
-  // var strXml = 'http://map.simpleapi.net/stationapi?x=' + gon.shrine.longitude + '&y=' + gon.shrine.latitude
-  // var parser = new DOMParser();
-  // let xmlData  = parser.parseFromString(strXml,"text/xml");
-  // console.log(xmlData);
-
 
   // 半径1km以内の登録された場所のデータを繰り返し処理で取得
   for (var i = 0; i < markerData.length; i++) {
