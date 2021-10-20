@@ -4,7 +4,7 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @other_posts = Post.where(user_id: @post.user.id).where.not(id: @post.id).includes(:shrine, :post_images) #現在のユーザの他の投稿
+    @other_posts = Post.where(user_id: @post.user.id).where.not(id: @post.id).includes(:shrine, :post_images) # 現在のユーザの他の投稿
   end
 
   def destroy

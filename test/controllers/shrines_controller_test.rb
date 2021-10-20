@@ -10,5 +10,4 @@ class ShrinesControllerTest < ActionDispatch::IntegrationTest
     get shrines_show_url
     assert_response :success
   end
-
 end

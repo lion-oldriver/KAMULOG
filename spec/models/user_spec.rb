@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのチェック' do
     subject { user.valid? }
+
     let!(:other_user) { create(:user) }
     let(:user) { build(:user) }
 
@@ -32,6 +33,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         is_expected.to eq false
       end
     end
+
     context 'introductionカラム' do
       it '200文字以内であるか。200文字は通す' do
         user.introduction = Faker::Lorem.characters(number: 200)
@@ -42,6 +44,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         is_expected.to eq false
       end
     end
+
     context 'emailカラム' do
       it '空欄ではない' do
         user.email = ''
@@ -56,11 +59,13 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:posts).macro).to eq :has_many
       end
     end
+
     context 'bookmarkモデル' do
       it '1:Nの関係か' do
         expect(User.reflect_on_association(:bookmarks).macro).to eq :has_many
       end
     end
+
     context 'relationshipモデル' do
       it '1:Nの関係か' do
         expect(User.reflect_on_association(:relationships).macro).to eq :has_many

@@ -29,11 +29,13 @@ RSpec.describe 'postモデルのテスト', type: :model do
         expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
+
     context 'Shrineモデルとの関係' do
       it 'N:1となっている' do
         expect(Post.reflect_on_association(:shrine).macro).to eq :belongs_to
       end
     end
+
     context 'PostImageモデルとの関係' do
       it '1:Nとなっている' do
         expect(Post.reflect_on_association(:post_images).macro).to eq :has_many

@@ -29,3 +29,61 @@
 .top-content-dark{
   background-color: #001722;
 }
+
+.underline-light{
+  position: relative;
+  z-index: 1;
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 1px;
+    background: #f4f2ee;
+    z-index: -1;
+    transition: all 800ms;
+  }
+  &.isActive:after{
+    width: 100%;
+  }
+}
+
+.underline-dark{
+  position: relative;
+  z-index: 1;
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 1px;
+    background: #001722;
+    z-index: -1;
+    transition: all 800ms;
+  }
+  &.isActive:after{
+    width: 100%;
+  }
+}
+
+.fadein-right {
+  opacity: 0;
+  transform : translate(50px, 0);
+  transition : all 1200ms;
+  &.scrollin{
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.fadein-left {
+  opacity: 0;
+  transform : translate(-50px, 0);
+  transition : all 1200ms;
+  &.scrollin{
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

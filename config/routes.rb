@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
-    registrations: 'users/registrations'
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
   }
   root to: "homes#top"
   get "home/manner" => "homes#manner", as: "manner"
@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング
   devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations',
   }
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]

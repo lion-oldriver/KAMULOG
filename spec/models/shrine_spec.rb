@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Shrineモデルのテスト', type: :model do
   describe 'バリデーションチェック' do
     subject { shrine.valid? }
-    
+
     let!(:other_shrine) { create(:shrine) }
     let(:shrine) { build(:shrine) }
 
@@ -17,12 +17,14 @@ RSpec.describe 'Shrineモデルのテスト', type: :model do
         is_expected.to eq false
       end
     end
+
     context "addressカラム" do
       it '住所は空でないか' do
         shrine.address = ''
         is_expected.to eq false
       end
     end
+
     context 'introductionカラム' do
       it '本文は空でないか' do
         shrine.introduction = ''
@@ -37,26 +39,31 @@ RSpec.describe 'Shrineモデルのテスト', type: :model do
         expect(Shrine.reflect_on_association(:posts).macro).to eq :has_many
       end
     end
+
     context 'bookmarkモデル' do
       it '1:Nの関係か' do
         expect(Shrine.reflect_on_association(:bookmarks).macro).to eq :has_many
       end
     end
+
     context 'tagモデル' do
       it '1:Nの関係か' do
         expect(Shrine.reflect_on_association(:tags).macro).to eq :has_many
       end
     end
+
     context 'shrine_tagモデル' do
       it '1:Nの関係か' do
         expect(Shrine.reflect_on_association(:shrine_tags).macro).to eq :has_many
       end
     end
+
     context 'godモデル' do
       it '1:Nの関係か' do
         expect(Shrine.reflect_on_association(:gods).macro).to eq :has_many
       end
     end
+
     context 'shrine_godモデル' do
       it '1:Nの関係か' do
         expect(Shrine.reflect_on_association(:shrine_gods).macro).to eq :has_many

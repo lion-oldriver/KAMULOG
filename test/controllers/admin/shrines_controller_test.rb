@@ -20,5 +20,4 @@ class Admin::ShrinesControllerTest < ActionDispatch::IntegrationTest
     get admin_shrines_new_url
     assert_response :success
   end
-
 end

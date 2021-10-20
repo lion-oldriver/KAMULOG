@@ -56,7 +56,6 @@ class Admin::ShrinesController < ApplicationController
     redirect_to admin_shrines_path
   end
 
-
   private
 
   def shrine_params

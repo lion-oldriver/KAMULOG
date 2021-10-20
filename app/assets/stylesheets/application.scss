@@ -39,8 +39,32 @@ h2, h3{
 }
 
 .navbar-toggler{
+  width: 50px;
+  height: 50px;
   border-color: #ffffff;
   background-color: #202326;
+  position: relative;
+}
+
+.navbar-toggler span{
+  position: absolute;
+  left: 5px;
+  width: 80%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.navbar-toggler span:nth-child(1){
+  top: 11px;
+}
+
+.navbar-toggler span:nth-child(2){
+  top: 22px;
+}
+
+.navbar-toggler span:nth-child(3){
+  top: 33px;
 }
 
 .tag {

@@ -3,8 +3,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @other_posts = Post.where(user_id: @post.user.id).where.not(id: @post.id).includes(:shrine, :post_images) #現在のユーザの他の投稿
-    @other_user_posts = Post.where(shrine_id: @post.shrine.id).where.not(user_id: @post.user.id).includes(:user, :shrine, :post_images) #同じ神社に対する他のユーザの投稿
+    @other_posts = Post.where(user_id: @post.user.id).where.not(id: @post.id).includes(:shrine, :post_images) # 現在のユーザの他の投稿
+    @other_user_posts = Post.where(shrine_id: @post.shrine.id).where.not(user_id: @post.user.id).includes(:user, :shrine, :post_images) # 同じ神社に対する他のユーザの投稿
   end
 
   def new
@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if post.save
       redirect_to shrine_path(@shrine)
     else
-      flash[:notice] = "未記入の項目があります"
+      flash[:alert] = "未記入の項目があります"
       redirect_to new_shrine_post_path(@shrine, @shrine.posts)
     end
   end
@@ -52,7 +52,6 @@ class PostsController < ApplicationController
     post.destroy
     redirect_to shrine_path(shrine)
   end
-
 
   private
 

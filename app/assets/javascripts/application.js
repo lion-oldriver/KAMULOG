@@ -20,7 +20,7 @@
 //= require jcanvas
 //= require_tree .
 
-
+/*global $ gon google geocoder markerLatLng*/
 var map;
 var marker = [];
 var infoWindow = [];
@@ -145,5 +145,49 @@ $(document).ready(function () {
     autoPlayDuration : 3000,
     keyboardOnAlways : true,
     hidePrevious : false
+  });
+});
+// アンダーラインを引く
+$(window).scroll(function(){
+  $(".underline-light").each(function(){
+    var position = $(this).offset().top,
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+    if (scroll > position - (windowHeight / 2)){
+      $(this).addClass('isActive');
+    }
+  });
+});
+
+$(window).scroll(function(){
+  $(".underline-dark").each(function(){
+    var position = $(this).offset().top,
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+    if (scroll > position - (windowHeight / 2)){
+      $(this).addClass('isActive');
+    }
+  });
+});
+// 横からフェードイン
+$(window).scroll(function (){
+  $('.fadein-right').each(function(){
+    var position = $(this).offset().top,
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+    if (scroll > position - windowHeight + 50){
+      $(this).addClass('scrollin');
+    }
+  });
+});
+
+$(window).scroll(function (){
+  $('.fadein-left').each(function(){
+    var position = $(this).offset().top,
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+    if (scroll > position - windowHeight + 50){
+      $(this).addClass('scrollin');
+    }
   });
 });

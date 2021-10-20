@@ -107,7 +107,7 @@ describe 'トップページ' do
       end
 
       it '正しく登録されるか' do
-        expect{ click_button '新規会員登録' }.to change(User.all, :count).by(1)
+        expect { click_button '新規会員登録' }.to change(User.all, :count).by(1)
       end
       it '遷移先がトップページになっているか' do
         click_button '新規会員登録'
@@ -134,6 +134,7 @@ describe 'トップページ' do
         expect(page).to have_button 'ログイン'
       end
     end
+
     context 'ログイン時のテスト' do
       before do
         fill_in 'user[email]', with: user.email
@@ -145,6 +146,7 @@ describe 'トップページ' do
         expect(current_path).to eq '/'
       end
     end
+
     context 'ログイン失敗時のテスト' do
       before do
         fill_in 'user[email]', with: ''
@@ -159,6 +161,7 @@ describe 'トップページ' do
 
   describe 'ヘッダーのテスト（ログイン後）' do
     let(:user) { create(:user) }
+
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: user.email

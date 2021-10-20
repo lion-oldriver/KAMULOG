@@ -9,7 +9,7 @@ class Users::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(email: params[:user][:email])
     if @user.present?
-      if (@user.valid_password?(params[:user][:password]) && (@user.is_deleted == true))
+      if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
         flash[:error] = "退会済みです。"
         redirect_to new_user_session_path
       else

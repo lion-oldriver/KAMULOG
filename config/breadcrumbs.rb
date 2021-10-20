@@ -32,7 +32,6 @@ crumb :new_post do |shrine|
   parent :shrine, shrine
 end
 
-
 crumb :user do |user|
   link "#{user.name}さんのページ", user_path(user)
   parent :top
