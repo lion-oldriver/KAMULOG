@@ -2,7 +2,7 @@ class ShrinesController < ApplicationController
   def index
     @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
     @posts = Post.order(visit_date: :desc).limit(5).includes(:user, :shrine, :post_images)
-    @tags = Tag.order(Arel.sql("RANDOM()")).limit(10)
+    @tags = Tag.order(Arel.sql("RAND()")).limit(10)
   end
 
   def show
