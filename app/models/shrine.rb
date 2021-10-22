@@ -12,14 +12,20 @@ class Shrine < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
   validates :introduction, presence: true
-
+  # 住所から緯度と経度を取得
   geocoded_by :address
   after_validation :geocode
+  # 閲覧数の多い順に並べ替える
+  scope :views, -> { order(impressions_count: :desc) }
+  # ブックマーク数の多い順に並び替える
+  def self.bookmarks
+    Shrine.joins(:bookmarks).where(bookmarks: { shrine_id: self.ids} ).group(:shrine_id).order("count(*) desc")
+  end
 
   def save_tag(sent_tags)
     current_tags = tags.pluck(:tag_name) unless tags.nil?
-    old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
+    old_tags = current_tags - sent_tags # 現在のタグから入力されたタグを引いて消去するタグを抽出する
+    new_tags = sent_tags - current_tags # 入力されたタグから現在のタグを引いて新しく登録するタグを抽出する
     old_tags.each do |old_tag|
       tags.delete Tag.find_by(tag_name: old_tag)
     end

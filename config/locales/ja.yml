@@ -6,3 +6,8 @@ ja:
         previous: '<前'
         next: '次 >'
         truncate: '...'
+  activerecord:
+    attributes:
+      post:
+        body: '感想'
+        visit_date: '参拝日'

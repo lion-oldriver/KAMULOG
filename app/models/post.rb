@@ -10,7 +10,8 @@ class Post < ApplicationRecord
 
   def not_future_visit_date
     if visit_date.present? && visit_date > Date.today
-      errors.add(:visit_date, ": 未来の日付は使用できません")
+      errors.add(:visit_date, "に未来の日付は使用できません")
     end
   end
+
 end

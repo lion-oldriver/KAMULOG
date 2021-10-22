@@ -18,31 +18,30 @@ class PostsController < ApplicationController
 
   def create
     @shrine = Shrine.find(params[:shrine_id])
-    post = current_user.posts.new(post_params)
-    post.shrine_id = @shrine.id
-    if post.save
+    @post = current_user.posts.new(post_params)
+    @post.shrine_id = @shrine.id
+    if @post.save
       redirect_to shrine_path(@shrine)
     else
-      flash[:alert] = "未記入の項目があります"
-      redirect_to new_shrine_post_path(@shrine, @shrine.posts)
+      render "new"
     end
   end
 
   def edit
     @post = Post.find(params[:id])
-    @shrine = Shrine.find(params[:shrine_id])
+    @shrine = @post.shrine
     unless @post.user == current_user
       redirect_to shrines_path
     end
   end
 
   def update
-    post = Post.find(params[:id])
-    shrine = post.shrine
-    if post.update(post_params)
-      redirect_to shrine_post_path(shrine, post)
+    @post = Post.find(params[:id])
+    @shrine = @post.shrine
+    if @post.update(post_params)
+      redirect_to shrine_post_path(@shrine, @post)
     else
-      redirect_to edit_shrine_post_path(shrine, post)
+      render "edit"
     end
   end
 
