@@ -1,4 +1,4 @@
-<div class="container py-3" style="min-height: 620px;">
+<div class="container py-3">
   <div class="row">
     <% breadcrumb :user, @user %>
     <div class="col-lg-8">
@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="media border bg-light shadow-sm p-1 mt-2 mb-3">
-        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3 mt-1" %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3 mt-1 ml-1" %>
         <div class="media-body">
           <h4><%= @user.name %></h4>
           <%= @user.introduction %>
@@ -39,33 +39,37 @@
       <%= paginate @posts %>
     </div>
 
-    <div class="col-lg-4 col-md-6">
-      <h3 class="font_shppori">ブックマーク</h3>
-      <% if @bookmark_shrines.present? %>
-        <div class="border bg-light shadow-sm">
-          <% @bookmark_shrines.each do |shrine| %>
-            <div class="media py-2 ml-1 border-bottom">
-              <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50, class:"rounded" %>
-              <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <h5>ブックマークされた神社はありません</h5>
-      <% end %>
-      <h3 class="font_shppori mt-3">フォローユーザ</h3>
-      <% if @followings.present? %>
-        <div class="border bg-light shadow-sm">
-          <% @followings.each do |following| %>
-            <div class="media py-2 ml-1 border-bottom">
-              <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded" %>
-              <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>フォローしているユーザはいません</p>
-      <% end %>
+    <div class="col-lg-4 mypage-sidebar">
+      <div class="mb-3 sidebar-content">
+        <h3 class="font_shppori">ブックマーク</h3>
+        <% if @bookmark_shrines.present? %>
+          <div class="border bg-light shadow-sm">
+            <% @bookmark_shrines.each do |shrine| %>
+              <div class="media py-2 ml-1 border-bottom">
+                <%= attachment_image_tag shrine.shrine_images.first, :image, :fill,50,50, class:"rounded" %>
+                <h5 class="media-body pt-3 pl-2"><%= link_to shrine.name, shrine_path(shrine) %></h5>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <h5>ブックマークされた神社はありません</h5>
+        <% end %>
+      </div>
+      <div class="sidebar-content">
+        <h3 class="font_shppori">フォローユーザ</h3>
+        <% if @followings.present? %>
+          <div class="border bg-light shadow-sm">
+            <% @followings.each do |following| %>
+              <div class="media py-2 ml-1 border-bottom">
+                <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded-circle" %>
+                <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p>フォローしているユーザはいません</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

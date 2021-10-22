@@ -3,6 +3,7 @@
     <% breadcrumb :edit_post, @post %>
     <div class="col-lg-10 mx-auto">
       <h3>投稿編集</h3>
+      <p class="text-danger"><%= flash[:errors] %></p>
       <%= form_with model: [@shrine, @post], local: true do |f| %>
         <div class="form-row">
           <%= f.label :画像, class:"col-2" %>

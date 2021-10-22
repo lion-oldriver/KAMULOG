@@ -40,9 +40,9 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     shrine = post.shrine
     if post.update(post_params)
-      redirect_to shrine_path(shrine)
+      redirect_to shrine_post_path(shrine, post)
     else
-      render "edit"
+      redirect_to edit_shrine_post_path(shrine, post)
     end
   end
 

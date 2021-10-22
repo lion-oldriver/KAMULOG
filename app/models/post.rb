@@ -6,4 +6,11 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
   validates :visit_date, presence: true
+  validate :not_future_visit_date
+
+  def not_future_visit_date
+    if visit_date.present? && visit_date > Date.today
+      errors.add(:visit_date, ": 未来の日付は使用できません")
+    end
+  end
 end

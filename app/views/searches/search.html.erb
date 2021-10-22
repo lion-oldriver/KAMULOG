@@ -1,41 +1,39 @@
-<div class="container py-3" style="min-height: 620px;">
-  <div class="row">
-    <% breadcrumb :search %>
-    <h2 class="pl-3">検索結果</h2>
-    <div class="d-flex flex-wrap justify-content-between">
-      <% @records.each do |shrine| %>
-        <div class="col-lg-6 px-0">
-          <div class="card col-lg-11 shadow p-0 mb-3">
-            <%= link_to shrine_path(shrine), {class:"text-reset"} do %>
-              <div class="d-flex">
-                <% shrine.shrine_images.first(2).each do |image| %>
-                  <%= attachment_image_tag image, :image, class:"search-image" %>
-                <% end %>
-              </div>
-              <div class="card-body p-2 pl-4">
-                <h5><%= shrine.name %></h5>
-                <p class="m-0"><%= shrine.address %></p>
-              </div>
-            <% end %>
-            <ul class="list-group">
-              <li class="list-group-item">
-                <%= shrine.introduction.truncate(60) %>
-              </li>
-              <li class="list-group-item">祭神:
-                <% shrine.gods.each do |god| %>
-                  <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset ml-0" %>
-                <% end %>
-              </li>
-              <li class="list-group-item">
-                <% shrine.tags.each do |tag| %>
-                  <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset ml-0" %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
+<div class="container py-3">
+  <% breadcrumb :search %>
+  <h2 class="pl-3">検索結果</h2>
+  <div class="d-flex flex-wrap justify-content-between">
+    <% @records.each do |shrine| %>
+      <div class="col-lg-6 px-0">
+        <div class="card col-lg-11 shadow p-0 mb-3">
+          <%= link_to shrine_path(shrine), {class:"text-reset"} do %>
+            <div class="d-flex">
+              <% shrine.shrine_images.first(2).each do |image| %>
+                <%= attachment_image_tag image, :image, class:"search-image" %>
+              <% end %>
+            </div>
+            <div class="card-body p-2 pl-4">
+              <h5><%= shrine.name %></h5>
+              <p class="m-0"><%= shrine.address %></p>
+            </div>
+          <% end %>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <%= shrine.introduction.truncate(60) %>
+            </li>
+            <li class="list-group-item">祭神:
+              <% shrine.gods.each do |god| %>
+                <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset ml-0" %>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <% shrine.tags.each do |tag| %>
+                <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset ml-0" %>
+              <% end %>
+            </li>
+          </ul>
         </div>
-      <% end %>
-      <div class="mx-auto mt-3"><%= paginate @records %></div>
-    </div>
+      </div>
+    <% end %>
+    <div class="mx-auto mt-3"><%= paginate @records %></div>
   </div>
 </div>
