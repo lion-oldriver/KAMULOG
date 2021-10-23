@@ -1,9 +1,11 @@
 class ShrinesController < ApplicationController
   def index
-    if params[:sort] == "views"
+    if params[:sort] == "views" # 閲覧数順にソート
       @shrines = Shrine.views.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
-    elsif params[:sort] == "bookmarks"
+    elsif params[:sort] == "bookmarks" # ブックマーク数順にソート
       @shrines = Shrine.bookmarks.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    elsif params[:sort] == "posts" # 投稿の多い順にソート
+      @shrines = Shrine.posts.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
     else
       @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
     end

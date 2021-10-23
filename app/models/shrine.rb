@@ -21,6 +21,10 @@ class Shrine < ApplicationRecord
   def self.bookmarks
     Shrine.joins(:bookmarks).where(bookmarks: { shrine_id: self.ids} ).group(:shrine_id).order("count(*) desc")
   end
+  # 投稿の多い順に並び替える
+  def self.posts
+    Shrine.joins(:posts).where(posts: { shrine_id: self.ids} ).group(:shrine_id).order("count(*) desc")
+  end
 
   def save_tag(sent_tags)
     current_tags = tags.pluck(:tag_name) unless tags.nil?
