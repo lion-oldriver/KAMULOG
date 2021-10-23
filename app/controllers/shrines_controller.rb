@@ -1,6 +1,14 @@
 class ShrinesController < ApplicationController
   def index
-    @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    if params[:sort] == "views" # 閲覧数順にソート
+      @shrines = Shrine.views.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    elsif params[:sort] == "bookmarks" # ブックマーク数順にソート
+      @shrines = Shrine.bookmarks.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    elsif params[:sort] == "posts" # 投稿の多い順にソート
+      @shrines = Shrine.posts.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    else
+      @shrines = Shrine.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(5)
+    end
     @posts = Post.order(visit_date: :desc).limit(5).includes(:user, :shrine, :post_images)
     @tags = Tag.find(Tag.pluck(:id).shuffle[0..9]) # タグを10件ランダムで抽出
   end

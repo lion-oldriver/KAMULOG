@@ -24,6 +24,10 @@ body{
 h2, h3{
   font-family: 'Shippori Mincho B1', serif;
 }
+// エラーメッセージ表示する際の入力フォームの崩れ防止
+.field_with_errors {
+  display: contents;
+}
 
 .navbar{
   background-color: #202020;

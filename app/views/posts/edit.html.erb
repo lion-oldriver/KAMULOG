@@ -1,10 +1,10 @@
-<div class="container py-3" style="margin-bottom: 200px;">
+<div class="container py-3">
   <div class="row">
     <% breadcrumb :edit_post, @post %>
     <div class="col-lg-10 mx-auto">
       <h3>投稿編集</h3>
-      <p class="text-danger"><%= flash[:errors] %></p>
       <%= form_with model: [@shrine, @post], local: true do |f| %>
+      <%= render "layouts/error_messages", model: f.object %>
         <div class="form-row">
           <%= f.label :画像, class:"col-2" %>
           <%= f.attachment_field :post_images_images, multiple: true, class:"col-6" %>
@@ -17,7 +17,7 @@
           <%= f.label :参拝日, class:"col-2" %>
           <%= f.date_field :visit_date, class:"col-3" %>
         </div>
-        <%= f.submit "変更する", class:"btn btn-outline-success offset-2 my-4" %>
+        <%= f.submit "変更する", class:"btn btn-outline-success offset-3 my-4" %>
       <% end %>
     </div>
   </div>
