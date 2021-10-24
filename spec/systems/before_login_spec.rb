@@ -114,6 +114,82 @@ describe 'トップページ' do
         expect(current_path).to eq '/'
       end
     end
+
+    context '新規登録失敗時のテスト, 名前を1文字にする' do
+      before do
+        @name = Faker::Lorem.characters(number: 1)
+        @email = Faker::Internet.email
+        fill_in 'user[name]', with: @name
+        fill_in 'user[email]', with: @email
+        fill_in 'user[password]', with: 'password'
+        fill_in 'user[password_confirmation]', with: 'password'
+      end
+
+      it '新規登録されない' do
+        expect{ click_button '新規会員登録' }.not_to change(User.all, :count)
+      end
+      it '新規登録画面が表示され、フォームの内容が正しい' do
+        click_button '新規会員登録'
+        expect(page).to have_content '新規会員登録'
+        expect(page).to have_field 'user[name]', with: @name
+        expect(page).to have_field 'user[email]', with: @email
+      end
+      it 'バリデーションエラーが表示される' do
+        click_button '新規会員登録'
+        expect(page).to have_content '名前は2文字以上で入力してください'
+      end
+    end
+
+    context '新規登録失敗時のテスト, 名前を21文字にする' do
+      before do
+        @name = Faker::Lorem.characters(number: 21)
+        @email = Faker::Internet.email
+        fill_in 'user[name]', with: @name
+        fill_in 'user[email]', with: @email
+        fill_in 'user[password]', with: 'password'
+        fill_in 'user[password_confirmation]', with: 'password'
+      end
+
+      it '新規登録されない' do
+        expect{ click_button '新規会員登録' }.not_to change(User.all, :count)
+      end
+      it '新規登録画面が表示され、フォームの内容が正しい' do
+        click_button '新規会員登録'
+        expect(page).to have_content '新規会員登録'
+        expect(page).to have_field 'user[name]', with: @name
+        expect(page).to have_field 'user[email]', with: @email
+      end
+      it 'バリデーションエラーが表示される' do
+        click_button '新規会員登録'
+        expect(page).to have_content '名前は20文字以内で入力してください'
+      end
+    end
+
+    context '新規登録失敗時のテスト, パスワードを5文字以下にする' do
+      before do
+        @name = Faker::Lorem.characters(number: 10)
+        @email = Faker::Internet.email
+        @password = Faker::Lorem.characters(number: 5)
+        fill_in 'user[name]', with: @name
+        fill_in 'user[email]', with: @email
+        fill_in 'user[password]', with: @password
+        fill_in 'user[password_confirmation]', with: @password
+      end
+
+      it '新規登録されない' do
+        expect{ click_button '新規会員登録' }.not_to change(User.all, :count)
+      end
+      it '新規登録画面が表示され、フォームの内容が正しい' do
+        click_button '新規会員登録'
+        expect(page).to have_content '新規会員登録'
+        expect(page).to have_field 'user[name]', with: @name
+        expect(page).to have_field 'user[email]', with: @email
+      end
+      it 'バリデーションエラーが表示される' do
+        click_button '新規会員登録'
+        expect(page).to have_content 'パスワードは6文字以上で入力してください'
+      end
+    end
   end
 
   describe 'ユーザーログインのテスト' do

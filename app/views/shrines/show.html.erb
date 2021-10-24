@@ -44,7 +44,7 @@
           <tr>
             <th class="col-2">近くの神社</th>
             <td>
-              <% unless @near_shrine.length == 0 %> <!--近くの神社の配列が存在するか判断-->
+              <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
                 <ul class="list-unstyled m-0">
                   <% i = 0 %>
                   <% while i < @near_shrine.length do %>

@@ -5,7 +5,6 @@ describe 'ユーザログイン後のテスト' do
   let!(:other_user) { create(:user) }
   let!(:shrine) { create(:shrine) }
   let!(:other_shrine) { create(:shrine) }
-  let!(:near_shrine) { create(:shrine) }
   let!(:post) { create(:post, user: user, shrine: shrine) }
   let!(:other_post) { create(:post, user: other_user, shrine: shrine) }
 
@@ -53,8 +52,8 @@ describe 'ユーザログイン後のテスト' do
         expect(page).to have_link other_post.body, href: shrine_post_path(other_post.shrine, other_post)
       end
       it '投稿の参拝日が表示される' do
-        expect(page).to have_content post.visit_date
-        expect(page).to have_content other_post.visit_date
+        expect(page).to have_content post.visit_date.strftime("%Y年%m月%d日")
+        expect(page).to have_content other_post.visit_date.strftime("%Y年%m月%d日")
       end
     end
   end
@@ -92,8 +91,8 @@ describe 'ユーザログイン後のテスト' do
         expect(page).to have_link other_post.body, href: shrine_post_path(other_post.shrine, other_post)
       end
       it '投稿の参拝日が表示される' do
-        expect(page).to have_content post.visit_date
-        expect(page).to have_content other_post.visit_date
+        expect(page).to have_content post.visit_date.strftime("%Y年%m月%d日")
+        expect(page).to have_content other_post.visit_date.strftime("%Y年%m月%d日")
       end
     end
   end
@@ -123,18 +122,19 @@ describe 'ユーザログイン後のテスト' do
         expect(page).to have_field 'post[visit_date]'
       end
       it '投稿ボタンが表示される' do
-        expect(page).to have_button '投稿'
+        expect(page).to have_button '投稿する'
       end
     end
 
     context '投稿成功のテスト' do
       before do
         fill_in 'post[body]', with: Faker::Lorem.characters(number: 50)
-        fill_in 'post[visit_date]', with: Faker::Date.in_date_period
+        fill_in 'post[visit_date]', with: Faker::Date.backward(days: 1)
+        attach_file('post[post_images_images][]', %W(#{Rails.root}/app/assets/images/no_image.jpg #{Rails.root}/app/assets/images/omairi.jpg))
       end
 
       it '自分の投稿が正しく保存される' do
-        expect { click_button '投稿' }.to change(shrine.posts, :count).by(1)
+        expect { click_button '投稿する' }.to change(shrine.posts, :count).by(1)
       end
     end
   end
@@ -156,6 +156,9 @@ describe 'ユーザログイン後のテスト' do
       end
       it '投稿の本文が表示される' do
         expect(page).to have_content post.body
+      end
+      it 'フォローリンクが表示されていないか' do
+        expect(page).not_to have_link 'フォロー', href: user_relationships_path(user)
       end
       it '編集のリンクがあるか' do
         expect(page).to have_link '編集する', href: edit_shrine_post_path(post.shrine, post)
@@ -222,8 +225,8 @@ describe 'ユーザログイン後のテスト' do
       before do
         @post_old_body = post.body
         @post_old_visit_date = post.visit_date
-        fill_in 'post[body]', with: Faker::Lorem.characters(number: 50)
-        fill_in 'post[visit_date]', with: Faker::Date.in_date_period
+        fill_in 'post[body]', with: Faker::Lorem.characters(number: 49)
+        fill_in 'post[visit_date]', with: "2021/01/01"
         click_button '変更する'
       end
 
@@ -234,7 +237,7 @@ describe 'ユーザログイン後のテスト' do
         expect(post.reload.visit_date).not_to eq @post_old_visit_date
       end
       it 'リダイレクト先が更新した投稿の詳細画面になっているか' do
-        expect(current_path).to eq '/shrines/' + shrine.id.to_s
+        expect(current_path).to eq '/shrines/' + shrine.id.to_s + '/posts/' + post.id.to_s
       end
     end
   end
@@ -260,7 +263,7 @@ describe 'ユーザログイン後のテスト' do
       end
       it '投稿のbodyとvisit_dateが表示される' do
         expect(page).to have_content post.body
-        expect(page).to have_content post.visit_date
+        expect(page).to have_content post.visit_date.strftime("%Y年%m月%d日")
       end
     end
   end
