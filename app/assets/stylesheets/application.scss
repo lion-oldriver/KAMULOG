@@ -79,7 +79,7 @@ main{
 }
 
 @media screen and (max-width:992px) {
-  // ヘッダーのレスポンシブ対応時に見やすいように大きくする
+  // レスポンシブ対応時ヘッダーを見やすいように大きくする
   header{
     height: 110px;
   }
@@ -114,8 +114,15 @@ main{
       top: 64px;
     }
   }
+
   .navbar-nav li{
-    height: 60px;
-    font-size: 30px;
+    height: 50px;
+    font-size: 25px;
+    width: 50%;
+  }
+
+  .dropdown-menu .drop-hover:hover > .dropdown-menu{
+    position: absolute;
+    left: 200%;
   }
 }
