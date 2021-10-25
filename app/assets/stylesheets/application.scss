@@ -42,6 +42,10 @@ h2, h3{
   margin-left: 0;
 }
 
+.search_form select{
+  height: 30px;
+}
+
 .tag {
  background:#eee;
  border: none;
@@ -115,14 +119,33 @@ main{
     }
   }
 
+  .search_form{
+    margin-bottom: 15px;
+    input, select{
+      height: 40px;
+    }
+  }
+
   .navbar-nav li{
-    height: 50px;
-    font-size: 25px;
+    height: 65px;
+    font-size: 30px;
     width: 50%;
   }
 
   .dropdown-menu .drop-hover:hover > .dropdown-menu{
     position: absolute;
     left: 200%;
+  }
+  // フッターのレスポンシブ対応
+  .footer{
+    height: 150px;
+    img{
+      height: 80px;
+      width: 150px;
+      margin-bottom: 10px;
+    }
+    div{
+      font-size: 22px;
+    }
   }
 }
