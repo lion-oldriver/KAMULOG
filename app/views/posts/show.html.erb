@@ -17,7 +17,7 @@
         </div>
         <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
         <div class="card-body">
-          <%= @post.body %>
+          <%= safe_join(@post.body.split("\n"),tag(:br)) %>
           <div class="d-flex flex-column mt-4">
             <% @post.post_images.each do |post_image| %>
               <%= attachment_image_tag post_image, :image, class:"w-50 rounded mb-4" %>

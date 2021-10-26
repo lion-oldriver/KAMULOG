@@ -20,7 +20,7 @@
             <%= @shrine.address %>
           </li>
           <li class="list-group-item">
-            <%= @shrine.introduction %>
+            <%= safe_join(@shrine.introduction.split("\n"),tag(:br)) %>
           </li>
           <li class="list-group-item">祭神:
             <% @shrine.gods.each do |god| %>
