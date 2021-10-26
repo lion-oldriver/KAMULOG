@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     resources :shrines do
       resources :posts, only: [:show, :destroy]
     end
+    resources :tags, only: [:index, :destroy]
   end
 end

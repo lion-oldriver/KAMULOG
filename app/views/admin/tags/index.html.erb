@@ -1,0 +1,26 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <h3>タグ一覧</h3>
+      <table class="table table-bordered bg-white">
+        <thead>
+          <tr>
+            <td class="col-1">No</td>
+            <td>タグ名</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tags.each.with_index(1) do |tag, idx| %>
+            <tr>
+              <td><%= idx %></td>
+              <td >
+                <%= tag.tag_name %>
+                <%= link_to "削除する", admin_tag_path(tag), method: :delete, class:"btn btn-sm btn-danger ml-3" %>
+              </td>
+            </tr>
+           <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

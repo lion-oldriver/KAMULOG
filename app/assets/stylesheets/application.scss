@@ -121,8 +121,12 @@ main{
 
   .search_form{
     margin-bottom: 15px;
+    #content{
+      width: 300px;
+    }
     input, select{
       height: 40px;
+      margin-right: 10px;
     }
   }
 
