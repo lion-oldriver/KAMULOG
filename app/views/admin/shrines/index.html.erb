@@ -18,14 +18,14 @@
               <li class="list-group-item">
                 <%= shrine.introduction.truncate(50) %>
               </li>
-              <li class="list-group-item">
+              <li class="list-group-item">祭神:
                 <% shrine.gods.each do |god| %>
                   <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
                 <% end %>
               </li>
               <li class="list-group-item">
                 <% shrine.tags.each do |tag| %>
-                  <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"text-reset" %>
+                  <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset" %>
                 <% end %>
               </li>
             </ul>
