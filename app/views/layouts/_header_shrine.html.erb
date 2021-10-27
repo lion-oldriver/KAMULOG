@@ -1,6 +1,7 @@
 <ul class="dropdown-menu">
   <li><%= link_to "一覧", shrines_path, class:"dropdown-item" %></li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">北海道・東北地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "北海道・東北地方", search_path(content: "北海道 青森 岩手 宮城 秋田 山形 福島", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "北海道", search_path(content: '北海道', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "青森県", search_path(content: '青森', model: 'tag'), class:"dropdown-item" %></li>
@@ -11,7 +12,8 @@
       <li><%= link_to "福島県", search_path(content: '福島', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">関東地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "関東地方", search_path(content: "茨城 栃木 群馬 埼玉 千葉 東京 神奈川", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "茨城県", search_path(content: '茨城', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "栃木県", search_path(content: '栃木', model: 'tag'), class:"dropdown-item" %></li>
@@ -22,7 +24,8 @@
       <li><%= link_to "神奈川県", search_path(content: '神奈川', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">中部地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "中部地方", search_path(content: "新潟 富山 石川 福井 山梨 長野 岐阜 静岡 愛知", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "新潟県", search_path(content: '新潟', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "富山県", search_path(content: '富山', model: 'tag'), class:"dropdown-item" %></li>
@@ -35,7 +38,8 @@
       <li><%= link_to "愛知県", search_path(content: '愛知', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">近畿地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "近畿地方", search_path(content: "三重 滋賀 京都 大阪 兵庫 奈良 和歌山", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "三重県", search_path(content: '三重', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "滋賀県", search_path(content: '滋賀', model: 'tag'), class:"dropdown-item" %></li>
@@ -46,7 +50,8 @@
       <li><%= link_to "和歌山県", search_path(content: '和歌山', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">中国地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "中国地方", search_path(content: "鳥取 島根 岡山 広島 山口", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "鳥取県", search_path(content: '鳥取', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "島根県", search_path(content: '島根', model: 'tag'), class:"dropdown-item" %></li>
@@ -55,7 +60,8 @@
       <li><%= link_to "山口県", search_path(content: '山口', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">四国地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "四国地方", search_path(content: "徳島 香川 愛媛 高知", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "徳島県", search_path(content: '徳島', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "香川県", search_path(content: '香川', model: 'tag'), class:"dropdown-item" %></li>
@@ -63,7 +69,8 @@
       <li><%= link_to "高知県", search_path(content: '高知', model: 'tag'), class:"dropdown-item" %></li>
     </ul>
   </li>
-  <li class="dropright drop-hover"><a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">九州・沖縄地方</a>
+  <li class="dropright drop-hover">
+  <%= link_to "九州・沖縄地方", search_path(content: "福岡 佐賀 長崎 熊本 大分 宮崎 鹿児島 沖縄", model: "tag"), class:"dropdown-item dropdown-toggle" %>
     <ul class="dropdown-menu">
       <li><%= link_to "福岡県", search_path(content: '福岡', model: 'tag'), class:"dropdown-item" %></li>
       <li><%= link_to "佐賀県", search_path(content: '佐賀', model: 'tag'), class:"dropdown-item" %></li>

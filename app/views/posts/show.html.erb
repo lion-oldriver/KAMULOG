@@ -17,7 +17,7 @@
         </div>
         <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
         <div class="card-body">
-          <%= @post.body %>
+          <%= safe_join(@post.body.split("\n"),tag(:br)) %>
           <div class="d-flex flex-column mt-4">
             <% @post.post_images.each do |post_image| %>
               <%= attachment_image_tag post_image, :image, class:"w-50 rounded mb-4" %>
@@ -31,13 +31,13 @@
       </div>
       <h3 class="mt-3"><%= @post.user.name %>さんの他の投稿</h3>
       <% if @other_posts.exists? %>
-        <% @other_posts.each do |other_post| %>
+        <% @other_posts.limit(6).each do |other_post| %>
           <%= link_to shrine_post_path(other_post.shrine, other_post), class:"text-reset" do %>
             <div class="card shadow mb-2 p-2">
               <h5><%= other_post.shrine.name %></h5>
               <%= other_post.body.truncate(70) %>
               <div class="d-flex">
-                <% other_post.post_images.each do |post_image| %>
+                <% other_post.post_images.first(3).each do |post_image| %>
                   <%= attachment_image_tag post_image, :image, size: "150x100", class:"mr-2" %>
                 <% end %>
               </div>
@@ -52,7 +52,7 @@
     <div class="col-lg-5">
       <h3>他の人の投稿</h3>
       <% if @other_user_posts.exists? %>
-        <% @other_user_posts.limit(5).each do |post| %>
+        <% @other_user_posts.limit(8).each do |post| %>
           <div class="card shadow p-2 mb-2">
             <div class="card-header mb-1 d-flex justify-content-between">
               <%= link_to  user_path(post.user) do %>
@@ -63,7 +63,7 @@
             </div>
             <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
               <div class="col-12 p-0 d-flex flex-wrap">
-                <% post.post_images.each do |post_image| %>
+                <% post.post_images.first(3).each do |post_image| %>
                   <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
                 <% end %>
               </div>

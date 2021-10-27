@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:shrine_id)
     @bookmark_shrines = Shrine.find(bookmarks)
     @followings = @user.followings
-    if params[:sort] == "latest"
+    if params[:sort] == "latest" # 新しい順にソート
       @posts = @user.posts.order(visit_date: :desc).includes(:shrine).page(params[:page]).per(10)
     else
       @posts = @user.posts.includes(:shrine).page(params[:page]).per(10)
@@ -16,14 +16,17 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render "edit"
+    end
   end
 
   def hide

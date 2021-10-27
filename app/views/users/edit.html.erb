@@ -4,21 +4,23 @@
     <div class="col-lg-10 mx-auto">
       <h3>ユーザ編集画面</h3>
       <%= form_with model: @user, local: true do |f| %>
+      <%= render "layouts/error_messages", model: f.object %>
         <div class="form-row mt-4">
-          <%= f.label :名前,class:"col-2 pl-4" %>
+          <%= f.label :"名前",class:"col-2 pl-4" %>
           <%= f.text_field :name, class:"col-5 p-1" %>
         </div>
         <div class="form-row my-3">
-          <%= f.label :紹介文, class:"col-2 pl-4" %>
+          <%= f.label :"紹介文", class:"col-2 pl-4" %>
           <%= f.text_area :introduction, rows:3, class:"col-5 p-1" %>
         </div>
         <div class="from-row">
-          <%= f.label :ユーザ画像, class:"col-2" %>
+          <%= f.label :"ユーザ画像", class:"col-2" %>
           <%= f.attachment_field :profile_image %>
         </div>
         <div class="d-flex offset-2 mt-4">
-          <%= f.submit '変更を保存', class:"btn btn-sm btn-outline-success mr-5" %>
-          <%= link_to '退会する', users_caution_path, class:"btn btn-sm btn-outline-danger" %>
+          <%= f.submit "変更を保存", class:"btn btn-sm btn-outline-success mr-5" %>
+          <%= link_to "マイページに戻る", user_path(@user), class:"btn btn-sm btn-outline-primary mr-5" %>
+          <%= link_to "退会する", users_caution_path, class:"btn btn-sm btn-outline-danger" %>
         </div>
       <% end %>
     </div>

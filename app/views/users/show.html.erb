@@ -20,7 +20,7 @@
       </div>
 
       <h3 class="font_shppori">参拝記録</h3>
-      <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> |
+      <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> /
       <%= link_to "古い順", user_path( @user) %>
       <% @posts.each do |post| %>
         <div class="card shadow mb-3">

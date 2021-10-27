@@ -18,7 +18,7 @@
         </div>
         <ul class="list-group">
           <li class="list-group-item">
-            <%= @shrine.introduction %>
+            <%= safe_join(@shrine.introduction.split("\n"),tag(:br)) %>
           </li>
           <li class="list-group-item">祭神:
             <% @shrine.gods.each do |god| %>
@@ -44,7 +44,7 @@
           <tr>
             <th class="col-2" scope="row">近くの神社</th>
             <td>
-              <% unless @near_shrine.length == 0 %> <!--近くの神社の配列が存在するか判断-->
+              <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
                 <ul class="list-unstyled m-0">
                   <% i = 0 %>
                   <% while i < @near_shrine.length do %>
@@ -81,7 +81,7 @@
             </div>
             <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
               <div class="col-12 p-0 d-flex flex-wrap">
-                <% post.post_images.each do |post_image| %>
+                <% post.post_images.first(3).each do |post_image| %>
                   <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
                 <% end %>
               </div>

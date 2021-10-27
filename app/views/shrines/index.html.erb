@@ -2,7 +2,14 @@
   <div class="row">
     <% breadcrumb :shrines %>
     <div class="col-lg-7">
-      <h2>神社一覧</h2>
+      <div class="d-flex">
+        <h2>神社一覧</h2>
+        <div class="mt-3">
+          <%= link_to "閲覧数順", shrines_path(sort: "views"), class:"mx-2" %>/
+          <%= link_to "ブックマーク数順", shrines_path(sort: "bookmarks"), class:"mr-2" %>/
+          <%= link_to "投稿数順", shrines_path(sort: "posts") %>
+        </div>
+      </div>
       <% @shrines.each do |shrine| %>
         <div class="card shadow p-0 mb-3">
           <%= link_to shrine_path(shrine), {class:"text-reset"} do %>
@@ -33,7 +40,7 @@
           </ul>
         </div>
       <% end %>
-      <div class="d-flex justify-content-center"><%= paginate @shrines %></div>
+      <div class="d-flex justify-content-center"><%= paginate @shrines, window: 2 %></div>
     </div>
 
     <div class="col-lg-5">
@@ -49,7 +56,7 @@
           </div>
           <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
             <div class="col-12 p-0 d-flex flex-wrap">
-              <% post.post_images.each do |post_image| %>
+              <% post.post_images.first(3).each do |post_image| %>
                 <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
               <% end %>
             </div>

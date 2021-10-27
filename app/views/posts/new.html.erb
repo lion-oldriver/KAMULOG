@@ -3,21 +3,21 @@
     <% breadcrumb :new_post, @shrine %>
     <div class="col-lg-9 mx-auto">
       <h3>新規投稿</h3>
-      <p class="text-danger"><%= flash[:alert] %></p>
       <%= form_with model: [@shrine, @post], local: true do |f| %>
+      <%= render "layouts/error_messages", model: f.object %>
         <div class="form-row">
-          <%= f.label :画像, class:"col-2" %>
+          <%= f.label :"画像(6枚まで)", class:"col-2" %>
           <%= f.attachment_field :post_images_images, multiple: true, class:"col-6" %>
         </div>
         <div class="form-row my-3">
-          <%= f.label :感想, class:"col-2" %>
+          <%= f.label :"感想", class:"col-2" %>
           <%= f.text_area :body, rows: 7, class:"col-7" %>
         </div>
         <div class="form-row">
-          <%= f.label :参拝日, class:"col-2" %>
+          <%= f.label :"参拝日", class:"col-2" %>
           <%= f.date_field :visit_date %>
         </div>
-        <%= f.submit "投稿する", class:"btn btn-success offset-4 mt-3" %>
+        <%= f.submit "投稿する", class:"btn btn-outline-success offset-4 mt-3" %>
       <% end %>
     </div>
   </div>
