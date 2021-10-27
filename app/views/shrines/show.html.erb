@@ -35,14 +35,14 @@
       <div id="map" style="width: 100%; height: 350px;"> <!--Google Mapを表示する-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
-      <table class="table table-bordered bg-light shadow">
+      <table class="table table-bordered bg-light shadow col-12">
         <tbody>
           <tr>
-            <th class="col-2" scope="row">住所</th>
+            <th class="col-2">住所</th>
             <td><%= @shrine.address %></td>
           </tr>
           <tr>
-            <th class="col-2" scope="row">近くの神社</th>
+            <th class="col-2">近くの神社</th>
             <td>
               <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
                 <ul class="list-unstyled m-0">
