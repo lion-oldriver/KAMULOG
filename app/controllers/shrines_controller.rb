@@ -15,7 +15,7 @@ class ShrinesController < ApplicationController
 
   def show
     @shrine = Shrine.find(params[:id])
-    @near_shrine = @shrine.nearbys(20, units: :km)  # 半径20km以内の神社を取得する
+    @near_shrine = @shrine.nearbys(20, units: :km)  # 半径20km以内の登録された神社を取得する
     gon.shrine = @shrine
     gon.shrines = @near_shrine
     @posts = Post.where(shrine_id: @shrine.id).order(visit_date: :desc).includes(:user, :shrine, :post_images).page(params[:page]).per(6)

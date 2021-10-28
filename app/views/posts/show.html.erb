@@ -17,15 +17,15 @@
         </div>
         <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
         <div class="card-body">
-          <%= safe_join(@post.body.split("\n"),tag(:br)) %>
+          <%= safe_join(@post.body.split("\n"),tag(:br)) %> <!--入力された通りに表示する-->
           <div class="d-flex flex-column mt-4">
             <% @post.post_images.each do |post_image| %>
               <%= attachment_image_tag post_image, :image, class:"w-50 rounded mb-4" %>
             <% end %>
           </div>
           <% if @post.user == current_user %>
-            <%= link_to '編集する', edit_shrine_post_path(@post.shrine, @post), class:"btn btn-sm btn-outline-success mr-3" %>
-            <%= link_to '削除する', shrine_post_path(@post.shrine, @post), method: :delete, class:"btn btn-sm btn-outline-danger" %>
+            <%= link_to "編集する", edit_shrine_post_path(@post.shrine, @post), class:"btn btn-sm btn-outline-success mr-3" %>
+            <%= link_to "削除する", shrine_post_path(@post.shrine, @post), method: :delete, class:"btn btn-sm btn-outline-danger" %>
           <% end %>
         </div>
       </div>

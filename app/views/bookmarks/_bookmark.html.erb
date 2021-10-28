@@ -1,5 +1,5 @@
 <% if Bookmark.exists?(user_id: current_user.id, shrine_id: shrine.id) %>
   <%= link_to "★", shrine_bookmarks_path(shrine), method: :delete, remote: true, class:"text-warning" %><!--ブックマークされている時-->
 <% else %>
-  <%= link_to "☆", shrine_bookmarks_path(shrine), method: :post, remote: true, class:"text-warning" %><!--ブックマークされていない時-->
+  <%= link_to "☆", shrine_bookmarks_path(shrine), method: :post, remote: true, class:"text-warning" %> <!--ブックマークされていない時-->
 <% end %>

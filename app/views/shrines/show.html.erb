@@ -13,7 +13,7 @@
         </div>
         <div id="shrine-images">
           <% @shrine.shrine_images.each do |image| %>
-            <%= attachment_image_tag image, :image , style:"width: 100%; height: auto;"%>
+            <%= attachment_image_tag image, :image, style:"width: 100%; height: auto;" %>
           <% end %>
         </div>
         <ul class="list-group">
@@ -43,15 +43,15 @@
               <td><%= @shrine.address %></td>
             </tr>
             <tr>
-              <th>近くの神社</th>
+              <th style="width: 20%;">近くの神社</th>
               <td>
                 <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
                   <ul class="list-unstyled m-0">
                     <% i = 0 %>
-                    <% while i < @near_shrine.length do %>
+                    <% while i < @near_shrine.length do %> <!--配列の数だけ繰り返し処理を行う-->
                       <li>
-                        <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %>
-                        <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km
+                        <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %> 
+                        <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km <!--近くの神社までの距離を表示する-->
                         <% i += 1 %>
                       </li>
                     <% end %>
