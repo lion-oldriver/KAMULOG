@@ -38,7 +38,7 @@
           <%= link_to '削除', admin_shrine_path(@shrine), method: :delete, class: "btn btn-sm btn-danger" %>
         </div>
       </div>
-      <div id="map" style="width: 100%; height: 350px;">
+      <div id="map" class="google_map">
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
     </div>

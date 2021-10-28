@@ -5,7 +5,7 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between ">
           <h5><%= link_to @post.user.name, admin_user_path(@post.user) %></h5>
-          <%= link_to '削除', admin_shrine_post_path(@post.shrine, @post), method: :delete, class:"btn btn-sm btn-danger" %>
+          <%= link_to "削除", admin_shrine_post_path(@post.shrine, @post), method: :delete, class:"btn btn-sm btn-danger" %>
         </div>
         <p class="border-bottom p-2">参拝日：<%= @post.visit_date.strftime("%Y年%m月%d日") %></p>
         <div class="card-body">
