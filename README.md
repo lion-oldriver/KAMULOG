@@ -2,9 +2,11 @@
 
 ## サイト概要
 
-神社の参拝記録を共有できるサイトです。登録された神社を検索して調べたり参拝した記録を投稿することができます。
+神社の参拝記録を共有できる[サイト](https://kamulog.work/)です。登録された神社を検索して調べたり参拝した記録を投稿することができます。
 また自分の投稿を一覧としてみれるので参拝記録としても使えます。<br>
 他にタグ付けされている地域、祭神、ご利益などでも検索を行うことができ、自分にあった神社を探すことができます。
+<br>
+また、レスポンシブ対応しているのでスマートフォンからもご覧になることができます。
 
 ### サイトテーマ
 
@@ -36,7 +38,7 @@
 
 ## チャレンジ要素一覧
 
-<https://docs.google.com/spreadsheets/d/1uoir5MDhX7go7nGcF8-9XEk_jRZC2F4Ux4tzTZvyF0o/edit?usp=sharing>
+[こちら](https://docs.google.com/spreadsheets/d/1uoir5MDhX7go7nGcF8-9XEk_jRZC2F4Ux4tzTZvyF0o/edit?usp=sharing)からご覧ください
 
 ## 開発環境
 
@@ -45,6 +47,19 @@
 - フレームワーク：Ruby on Rails
 - JS ライブラリ：jQuery
 - IDE：Cloud9
+- AWS
+  - EC2
+  - RDS
+  - Route 53
+
+## 機能一覧
+- ユーザ登録・ログイン機能(devise)
+- 複数画像投稿(refile)
+- フォロー機能(Ajax)
+- ブックマーク機能(Ajax)
+- 検索機能(OR検索)
+- ページネーション(kaminari)
+- 地図表示(geocoder)
 
 ## 使用素材
 

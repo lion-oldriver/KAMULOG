@@ -47,7 +47,7 @@ function initMap() {
     map: map
   });
 
-  // 半径1km以内の登録された場所のデータを繰り返し処理で取得
+  // 半径20km以内の登録された場所のデータを繰り返し処理で取得
   for (var i = 0; i < markerData.length; i++) {
     markerLatLng = new google.maps.LatLng({
       lat: markerData[i]['latitude'],
@@ -66,7 +66,7 @@ function initMap() {
     let id = markerData[i]['id']
     infoWindow[i] = new google.maps.InfoWindow({
       // 吹き出しの内容、クリックするとその場所のページに飛ぶ
-      content: `<a href='/shrines/${ id }'>${ markerData[i]['address'] }</a>`
+      content: `<a href='/shrines/${ id }'>${ markerData[i]['name'] }</a>`
     });
     markerEvent(i);
   }

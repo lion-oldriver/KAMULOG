@@ -65,11 +65,11 @@
         </div>
       <% end %>
       <h2>おすすめタグ<small>(10件)</small></h2>
-        <div class="d-flex flex-wrap border rounded  bg-light shadow p-2">
-          <% @tags.each do |tag| %>
-            <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset mx-2" %>
-          <% end %>
-        </div>
+      <div class="d-flex flex-wrap border rounded  bg-light shadow p-2">
+        <% @tags.each do |tag| %>
+          <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset mx-2" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

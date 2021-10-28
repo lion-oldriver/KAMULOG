@@ -4,30 +4,30 @@
       <h2>新規登録</h2>
       <%= form_with model: [:admin, @shrine], local: true do |f| %>
         <div class="form-row mb-3">
-          <%= f.label :神社名, class:"col-2" %>
+          <%= f.label :name, "神社名", class:"col-2" %>
           <%= f.text_field :name, class:"col-7" %>
         </div>
         <div class="form-row mb-3">
-          <%= f.label :住所, class:"col-2" %>
+          <%= f.label :address, "住所", class:"col-2" %>
           <%= f.text_area :address, class:"col-7" %>
         </div>
         <div class="form-row mb-3">
-          <%= f.label :紹介文, class:"col-2" %>
+          <%= f.label :introduction, "紹介文", class:"col-2" %>
           <%= f.text_area :introduction, rows: 6, class:"col-7" %>
         </div>
         <div class="form-row mb-3">
-          <%= f.label :祭神, class:"col-2" %>
+          <%= f.label :god_name, "祭神", class:"col-2" %>
           <%= f.text_area :god_name, class:"col-7" %>
         </div>
         <div class="form-row mb-3">
-          <%= f.label :タグ, class:"col-2" %>
+          <%= f.label :tag_name, "タグ", class:"col-2" %>
           <%= f.text_area :tag_name, class:"col-7" %>
         </div>
         <div class="form-row mb-3">
           <%= f.label :画像, class:"col-2" %>
           <%= f.attachment_field :shrine_images_images, multiple: true, class:"col-7 p-0" %>
         </div>
-        <%= f.submit '新規登録', class:"btn btn-sm btn-success" %>
+        <%= f.submit "新規登録", class:"btn btn-sm btn-success" %>
       <% end %>
     </div>
   </div>
