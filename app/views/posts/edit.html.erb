@@ -17,7 +17,8 @@
           <%= f.label :"参拝日", class:"col-2" %>
           <%= f.date_field :visit_date, class:"col-3" %>
         </div>
-        <%= f.submit "変更する", class:"btn btn-outline-success offset-3 my-4" %>
+        <%= f.submit "変更する", class:"btn btn-outline-success offset-2 my-4 mr-5" %>
+        <%= link_to "詳細へ戻る", shrine_post_path(@shrine, @post), class:"btn btn-outline-primary" %>
       <% end %>
     </div>
   </div>

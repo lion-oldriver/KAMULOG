@@ -2,7 +2,7 @@
   <div class="row">
     <% breadcrumb :user, @user %>
     <div class="col-lg-8">
-      <h2 class="font_shppori">マイページ</h2>
+      <h2>マイページ</h2>
       <div class="d-flex">
         <h5 class="m-0 mt-1">登録情報</h5>
         <% if @user == current_user %>
@@ -19,9 +19,13 @@
         </div>
       </div>
 
-      <h3 class="font_shppori">参拝記録</h3>
-      <%= link_to "新しい順", user_path(id: @user.id, sort: "latest") %> /
-      <%= link_to "古い順", user_path( @user) %>
+      <div class="d-flex mb-1">
+        <h3>参拝記録</h3>
+        <div class="mt-2">
+          <%= link_to "新しい順", user_path(@user), class:"ml-2 mr-1" %> /
+          <%= link_to "古い順", user_path(id: @user.id, sort: "oldest"), class:"ml-1" %>
+        </div>
+      </div>
       <% @posts.each do |post| %>
         <div class="card shadow mb-3">
           <div class="row">
@@ -41,7 +45,7 @@
 
     <div class="col-lg-4 mypage-sidebar">
       <div class="mb-3 sidebar-content">
-        <h3 class="font_shppori">ブックマーク</h3>
+        <h3>ブックマーク</h3>
         <% if @bookmark_shrines.present? %>
           <div class="border bg-light shadow-sm">
             <% @bookmark_shrines.each do |shrine| %>
@@ -56,7 +60,7 @@
         <% end %>
       </div>
       <div class="sidebar-content">
-        <h3 class="font_shppori">フォローユーザ</h3>
+        <h3>フォローユーザ</h3>
         <% if @followings.present? %>
           <div class="border bg-light shadow-sm">
             <% @followings.each do |following| %>

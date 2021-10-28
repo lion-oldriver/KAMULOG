@@ -6,10 +6,10 @@ class UsersController < ApplicationController
     bookmarks = Bookmark.where(user_id: @user.id).pluck(:shrine_id)
     @bookmark_shrines = Shrine.find(bookmarks)
     @followings = @user.followings
-    if params[:sort] == "latest" # 新しい順にソート
-      @posts = @user.posts.order(visit_date: :desc).includes(:shrine).page(params[:page]).per(10)
+    if params[:sort] == "oldest" # 古い順にソート
+      @posts = @user.posts.order(visit_date: :asc).includes(:shrine).page(params[:page]).per(10)
     else
-      @posts = @user.posts.includes(:shrine).page(params[:page]).per(10)
+      @posts = @user.posts.order(visit_date: :desc).includes(:shrine).page(params[:page]).per(10)
     end
   end
 

@@ -46,6 +46,11 @@ h2, h3{
   height: 30px;
 }
 
+.google_map{
+  width: 100%;
+  height: 350px;
+}
+
 .tag {
  background:#eee;
  border: none;
@@ -90,15 +95,12 @@ main{
 
   .navbar img{
   height: 100px;
-  width: 170px;
+  width: 200px;
   }
   // ハンバーガーメニュー
   .navbar-toggler{
-  width: 90px;
-  height: 90px;
-  border-color: #ffffff;
-  border-width: 2px;
-  background-color: #202326;
+  width: 95px;
+  height: 95px;
   position: relative;
     span{
     position: absolute;
@@ -131,7 +133,7 @@ main{
   }
 
   .navbar-nav li{
-    height: 65px;
+    height: 75px;
     font-size: 30px;
     width: 50%;
   }
@@ -139,6 +141,10 @@ main{
   .dropdown-menu .drop-hover:hover > .dropdown-menu{
     position: absolute;
     left: 200%;
+  }
+
+  .google_map{
+    height: 500px;
   }
   // フッターのレスポンシブ対応
   .footer{
