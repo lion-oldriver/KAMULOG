@@ -35,33 +35,35 @@
       <div id="map" style="width: 100%; height: 350px;"> <!--Google Mapを表示する-->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
-      <table class="table table-bordered bg-light shadow col-12">
-        <tbody>
-          <tr>
-            <th class="col-2">住所</th>
-            <td><%= @shrine.address %></td>
-          </tr>
-          <tr>
-            <th class="col-2">近くの神社</th>
-            <td>
-              <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
-                <ul class="list-unstyled m-0">
-                  <% i = 0 %>
-                  <% while i < @near_shrine.length do %>
-                    <li>
-                      <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %>
-                      <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km
-                      <% i += 1 %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p>近くの神社がありません</p>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered bg-light shadow ">
+          <tbody>
+            <tr>
+              <th style="width: 20%;">住所</th>
+              <td><%= @shrine.address %></td>
+            </tr>
+            <tr>
+              <th>近くの神社</th>
+              <td>
+                <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
+                  <ul class="list-unstyled m-0">
+                    <% i = 0 %>
+                    <% while i < @near_shrine.length do %>
+                      <li>
+                        <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %>
+                        <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km
+                        <% i += 1 %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>近くの神社がありません</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="col-lg-5">
