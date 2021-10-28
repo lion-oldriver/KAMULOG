@@ -8,7 +8,7 @@ class Admin::ShrinesController < ApplicationController
 
   def show
     @shrine = Shrine.find(params[:id])
-    @near_shrine = @shrine.nearbys(10, units: :km)
+    @near_shrine = @shrine.nearbys(20, units: :km)
     gon.shrine = @shrine
     gon.shrines = @near_shrine
     @posts = Post.where(shrine_id: @shrine.id).order(visit_date: :desc).includes(:user, :shrine, :post_images).page(params[:page]).per(8)
