@@ -10,7 +10,7 @@
   <div class="d-flex flex-column align-items-center m-auto w-25">
     <h2><span class="underline-dark">参拝する</span></h2>
     <p class="mt-2 mb-4">心を込めて祈りを捧げるにあたり丁寧な作法を心がけたいことは自然なことです。作法に込められた「心」についても理解いただければ幸いです。</p>
-    <p><%= link_to "詳しく知る >" , manner_path, class:"btn btn-outline-success rounded-pill" %></p>
+    <p><%= link_to "詳しく知る >", manner_path, class:"btn btn-outline-success rounded-pill" %></p>
   </div>
 </div>
 
@@ -18,6 +18,7 @@
   <div class="d-flex flex-column align-items-center m-auto w-25 text-white">
     <h2><span class="underline-light">共有する</span></h2>
     <p class="mt-2">あなたのお参りした神社の感想や写真を投稿しましょう。投稿を通じて皆様の輪を広げていきましょう。</p>
+    <p><%= link_to "神社一覧 >", shrines_path, class:"btn btn-outline-light rounded-pill" %></p>
   </div>
   <div class="w-50 d-flex flex-wrap">
     <%= image_tag asset_path("inari1.jpg"), class:"w-50" %>
