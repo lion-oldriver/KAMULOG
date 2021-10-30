@@ -1,5 +1,5 @@
 <%= form_tag(search_path, method: :get) do %>
   <%= text_field_tag "content" %>
-  <%= select_tag "model", options_for_select({ "神社名" => "shrine", "祭神" => "god", "タグ" => "tag"}) %>
+  <%= select_tag "method", options_for_select({ "複数条件" => "multi", "絞り込み" => "refined"}) %>
   <%= submit_tag "検索", class:"btn btn-sm btn-primary" %>
 <% end %>
