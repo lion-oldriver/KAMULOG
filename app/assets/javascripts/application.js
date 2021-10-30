@@ -103,7 +103,7 @@ $(function(){
         fontSize : 11,
         fontShadowColor : "white",
         onSelect : function(data){
-            window.location.href = "/search?utf8=✓&content=" + data.name + "&model=tag&commit=検索";
+            window.location.href = "/search?utf8=✓&content=" + data.name + "&method=multi&commit=検索";
        }
     });
 });
