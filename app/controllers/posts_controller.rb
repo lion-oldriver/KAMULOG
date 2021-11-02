@@ -38,17 +38,23 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @shrine = @post.shrine
-    if @post.update(post_params)
-      redirect_to shrine_post_path(@shrine, @post)
+    if @post.user != current_user
+      redirect_to shrine_path(@shrine)
     else
-      render "edit"
+      if @post.update(post_params)
+        redirect_to shrine_post_path(@shrine, @post)
+      else
+        render "edit"
+      end
     end
   end
 
   def destroy
     post = Post.find(params[:id])
     shrine = post.shrine
-    post.destroy
+    if post.user == current_user
+      post.destroy
+    end
     redirect_to shrine_path(shrine)
   end
 
