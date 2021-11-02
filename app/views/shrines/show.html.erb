@@ -22,12 +22,12 @@
           </li>
           <li class="list-group-item">祭神:
             <% @shrine.gods.each do |god| %>
-              <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset" %>
+              <%= link_to god.god_name, search_path(content: god.god_name, method: 'multi'), class:"text-reset" %>
             <% end %>
           </li>
           <li class="list-group-item">
             <% @shrine.tags.each do |tag| %>
-              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset" %>
+              <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, method: 'multi'), class:"tag text-reset" %>
             <% end %>
           </li>
         </ul>
@@ -50,7 +50,7 @@
                     <% i = 0 %>
                     <% while i < @near_shrine.length do %> <!--配列の数だけ繰り返し処理を行う-->
                       <li>
-                        <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %> 
+                        <%= link_to @near_shrine[i][:name], shrine_path(@near_shrine[i][:id]) %>
                         <%= @shrine.distance_to(@near_shrine[i]).round(2) %>km <!--近くの神社までの距離を表示する-->
                         <% i += 1 %>
                       </li>

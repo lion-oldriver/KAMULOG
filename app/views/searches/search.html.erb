@@ -22,12 +22,12 @@
             </li>
             <li class="list-group-item">祭神:
               <% shrine.gods.each do |god| %>
-                <%= link_to god.god_name, search_path(content: god.god_name, model: 'god'), class:"text-reset ml-0" %>
+                <%= link_to god.god_name, search_path(content: god.god_name, method: 'multi'), class:"text-reset ml-0" %>
               <% end %>
             </li>
             <li class="list-group-item">
               <% shrine.tags.each do |tag| %>
-                <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, model: 'tag'), class:"tag text-reset ml-0" %>
+                <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, method: 'multi'), class:"tag text-reset ml-0" %>
               <% end %>
             </li>
           </ul>
