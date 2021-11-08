@@ -17,6 +17,18 @@ class Shrine < ApplicationRecord
   after_validation :geocode
   # 閲覧数の多い順に並べ替える
   scope :views, -> { order(impressions_count: :desc) }
+  # 複数条件でOR検索
+  def self.search_multi(content)
+    where("name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags)
+      .or(self.where("god_name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags))
+      .or(self.where("tag_name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags))
+  end
+  # 絞り込み検索
+  def self.search_refined(content)
+    joins(:gods, :tags).where("name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags)
+      .or(self.joins(:gods, :tags).where("god_name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags))
+      .or(self.joins(:gods, :tags).where("tag_name LIKE ?", "%#{content}%").includes(:shrine_gods, :gods, :shrine_tags, :tags))
+  end
   # ブックマーク数の多い順に並び替える
   def self.bookmarks
     Shrine.joins(:bookmarks).where(bookmarks: { shrine_id: self.ids} ).group(:shrine_id).order("count(*) desc")
@@ -25,7 +37,7 @@ class Shrine < ApplicationRecord
   def self.posts
     Shrine.joins(:posts).where(posts: { shrine_id: self.ids} ).group(:shrine_id).order("count(*) desc")
   end
-
+  # タグ登録
   def save_tag(sent_tags)
     current_tags = tags.pluck(:tag_name) unless tags.nil?
     old_tags = current_tags - sent_tags # 現在のタグから入力されたタグを引いて消去するタグを抽出する
