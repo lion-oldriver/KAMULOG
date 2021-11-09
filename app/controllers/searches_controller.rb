@@ -3,8 +3,8 @@ class SearchesController < ApplicationController
     method = params[:method]
     contents = params[:content].split(/[[:blank:]]+/).select(&:present?) # 検索ワードを分割する
     @shrines = Shrine.none # 空のモデルオブジェクトを作成
-    @shrine_joins = Shrine.joins(:gods, :tags) # godsとtagsテーブルを結合する
     if method == "multi" # 複数条件でOR検索
+      @shrine_joins = Shrine.joins(:gods, :tags) # godsとtagsテーブルを結合する
       contents.each do |content|
         @shrines = @shrines.or(@shrine_joins.search_multi(content))
       end
