@@ -57,7 +57,7 @@
           <%= link_to admin_shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
             <div class="col-12 p-0 d-flex flex-wrap">
               <% post.post_images.each do |post_image| %>
-                <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+                <%= attachment_image_tag post_image, :image, class:"shrine_post_images" %>
               <% end %>
             </div>
             <%= post.body.truncate(50) %>

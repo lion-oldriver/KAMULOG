@@ -13,7 +13,7 @@
         </div>
         <div id="shrine-images">
           <% @shrine.shrine_images.each do |image| %>
-            <%= attachment_image_tag image, :image, style:"width: 100%; height: auto;" %>
+            <%= attachment_image_tag image, :image, class:"w-100 h-auto" %>
           <% end %>
         </div>
         <ul class="list-group">
@@ -39,11 +39,11 @@
         <table class="table table-bordered bg-light shadow ">
           <tbody>
             <tr>
-              <th style="width: 20%;">住所</th>
+              <th class="w-20">住所</th>
               <td><%= @shrine.address %></td>
             </tr>
             <tr>
-              <th style="width: 20%;">近くの神社</th>
+              <th class="w-20">近くの神社</th>
               <td>
                 <% unless @near_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
                   <ul class="list-unstyled m-0">
@@ -84,7 +84,7 @@
             <%= link_to shrine_post_path(post.shrine, post), {class:"text-reset"} do %>
               <div class="p-0 d-flex flex-wrap">
                 <% post.post_images.first(3).each do |post_image| %>
-                  <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+                  <%= attachment_image_tag post_image, :image, class:"shrine_post_images" %>
                 <% end %>
               </div>
               <%= post.body.truncate(50) %>

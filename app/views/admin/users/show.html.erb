@@ -47,7 +47,7 @@
               <%= post.body.truncate(70) %>
               <div class="d-flex">
                 <% post.post_images.each do |post_image| %>
-                  <%= attachment_image_tag post_image, :image, style:"width: 31%; margin: 0 1%;" %>
+                  <%= attachment_image_tag post_image, :image, class:"shrine_post_images" %>
                 <% end %>
               </div>
             </div>

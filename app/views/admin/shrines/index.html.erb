@@ -1,13 +1,13 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-12">
+    <div>
       <h2>神社一覧</h2>
       <div class="d-flex flex-wrap">
         <% @shrines.each do |shrine| %>
-          <div class="card shadow p-0 mb-3" style="width: 31%; margin: 0 1%;">
+          <div class="card shadow p-0 mb-3 shrine_post_images">
             <%= link_to admin_shrine_path(shrine), {class:"text-reset"} do %>
               <% shrine.shrine_images.first(1).each do |image| %>
-                <%= attachment_image_tag image, :image, style:"width: 100%; height: auto; max-height: 230px;" %>
+                <%= attachment_image_tag image, :image, class:"admin_shrine_images" %>
               <% end %>
               <div class="card-body">
                 <h5><%= shrine.name %></h5>
