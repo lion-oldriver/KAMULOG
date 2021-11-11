@@ -78,6 +78,20 @@ function initMap() {
   }
 }
 
+function initMap() {
+    // 位置情報を取得
+    navigator.geolocation.getCurrentPosition(function (position) {
+    Lat = position.coords.latitude;
+    Lng = position.coords.longitude;
+
+      // 取得した位置情報を中心に表示
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: Lat, lng: Lng},
+        zoom: 15
+      });
+    });
+  }
+
 // Japan Map表示
 $(function(){
     var areas = [
