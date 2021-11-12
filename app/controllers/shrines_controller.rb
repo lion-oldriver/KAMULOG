@@ -21,4 +21,10 @@ class ShrinesController < ApplicationController
     @posts = Post.where(shrine_id: @shrine.id).order(visit_date: :desc).includes(:user, :shrine, :post_images).page(params[:page]).per(6)
     impressionist(@shrine, nil, unique: [:ip_address]) # 閲覧数をカウントする。IPアドレスで識別
   end
+
+  def location
+    lat = params[:lat]
+    lng = params[:lng]
+    @position_shrine = Shrine.near([lat.to_i, lng.to_i], 1000, units: :km)
+  end
 end

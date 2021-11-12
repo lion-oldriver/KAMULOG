@@ -1,0 +1,25 @@
+<table class="table table-bordered bg-light shadow ">
+          <tbody>
+            <tr>
+              <th class="w-20">近くの神社</th>
+              <td>
+                <% unless @position_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
+                  <ul class="list-unstyled m-0">
+                    <% i = 0 %>
+                    <% while i < @position_shrine.length do %> <!--配列の数だけ繰り返し処理を行う-->
+                      <li>
+                        <%= link_to @position_shrine[i][:name], shrine_path(@position_shrine[i][:id]) %>
+                        <% i += 1 %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>近くの神社がありません</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+         <div id="location_map" class="google_map"> <!--Google Mapを表示する-->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+      </div>

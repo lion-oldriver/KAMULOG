@@ -77,20 +77,30 @@ function initMap() {
     });
   }
 }
-
-function initMap() {
-    // 位置情報を取得
-    navigator.geolocation.getCurrentPosition(function (position) {
-    Lat = position.coords.latitude;
-    Lng = position.coords.longitude;
-
-      // 取得した位置情報を中心に表示
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: Lat, lng: Lng},
-        zoom: 15
-      });
+// 現在地を取得する
+$(function (){
+  navigator.geolocation.getCurrentPosition(function (position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    location_map = new google.maps.Map(document.getElementById('location_map'), {
+    center: {
+      lat: lat,
+      lng: lng
+    },
+    zoom: 14,
+  });
+    $.ajax({
+      url: '/location',
+      type: 'GET',
+      dataType: 'html',
+      async: true,
+      data: {
+        lat: lat,
+        lng: lng
+      },
     });
-  }
+  });
+});
 
 // Japan Map表示
 $(function(){
