@@ -1,25 +1,45 @@
-<table class="table table-bordered bg-light shadow ">
-          <tbody>
-            <tr>
-              <th class="w-20">近くの神社</th>
-              <td>
-                <% unless @position_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
-                  <ul class="list-unstyled m-0">
-                    <% i = 0 %>
-                    <% while i < @position_shrine.length do %> <!--配列の数だけ繰り返し処理を行う-->
-                      <li>
-                        <%= link_to @position_shrine[i][:name], shrine_path(@position_shrine[i][:id]) %>
-                        <% i += 1 %>
-                      </li>
-                    <% end %>
-                  </ul>
-                <% else %>
-                  <p>近くの神社がありません</p>
+<div class="container py-5">
+  <div class="d-flex justify-content-center">
+    <button class="location btn btn-success">現在地から検索</button>
+  </div>
+  <div class="row">
+    <% unless @location_shrine.blank? %> <!--近くの神社の配列が存在するか判断-->
+      <% i = 0 %>
+      <% while i < @location_shrine.length do %> <!--配列の数だけ繰り返し処理を行う-->
+        <div class="col-lg-6 px-0">
+          <div class="card shadow p-0 my-3 mx-1">
+            <%= link_to shrine_path(@location_shrine[i][:id]), {class:"text-reset"} do %>
+              <div class="d-flex">
+                <% @location_shrine[i].shrine_images.first(2).each do |image| %>
+                  <%= attachment_image_tag image, :image, class:"search-image" %>
                 <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-         <div id="location_map" class="google_map"> <!--Google Mapを表示する-->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-      </div>
+              </div>
+              <div class="card-body p-2 pl-4">
+                <h5><%= @location_shrine[i][:name] %></h5>
+                <p class="m-0"><%= @location_shrine[i][:address] %></p>
+              </div>
+            <% end %>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <%= @location_shrine[i][:introduction].truncate(60) %>
+              </li>
+              <li class="list-group-item">祭神:
+                <% @location_shrine[i].gods.each do |god| %>
+                  <%= link_to god.god_name, search_path(content: god.god_name, method: 'multi'), class:"text-reset ml-0" %>
+                <% end %>
+              </li>
+              <li class="list-group-item">
+                <% @location_shrine[i].tags.each do |tag| %>
+                  <%= link_to tag.tag_name + "(#{tag.shrine.count})", search_path(content: tag.tag_name, method: 'multi'), class:"tag text-reset ml-0" %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <% i += 1 %>
+      <% end %>
+    <% else %>
+      <p class="mx-auto mt-5">近くの神社がありません</p>
+    <% end %>
+  </div>
+</div>

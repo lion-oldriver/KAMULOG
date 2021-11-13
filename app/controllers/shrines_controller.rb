@@ -23,8 +23,9 @@ class ShrinesController < ApplicationController
   end
 
   def location
-    lat = params[:lat]
-    lng = params[:lng]
-    @position_shrine = Shrine.near([lat.to_i, lng.to_i], 1000, units: :km)
+    @lat = params[:lat]
+    @lng = params[:lng]
+    # 現在地から50km以内の登録された神社を取得
+    @location_shrine = Shrine.near([@lat.to_i, @lng.to_i], 500, units: :km).includes(:shrine_gods, :gods, :shrine_tags, :tags)
   end
 end

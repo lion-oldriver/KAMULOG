@@ -78,26 +78,26 @@ function initMap() {
   }
 }
 // 現在地を取得する
-$(function (){
-  navigator.geolocation.getCurrentPosition(function (position) {
-    lat = position.coords.latitude;
-    lng = position.coords.longitude;
-    location_map = new google.maps.Map(document.getElementById('location_map'), {
-    center: {
-      lat: lat,
-      lng: lng
-    },
-    zoom: 14,
-  });
-    $.ajax({
-      url: '/location',
-      type: 'GET',
-      dataType: 'html',
-      async: true,
-      data: {
-        lat: lat,
-        lng: lng
-      },
+$(document).ready(function () {
+  $(".location").on("click", function (){
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      // コントローラへデータを送る
+      $.ajax({
+        url: '/location',
+        type: 'GET',
+        dataType: 'html',
+        async: true,
+        data: {
+          lat: lat,
+          lng: lng
+        },
+      })
+      // 送られたデータをもとに書き換える
+      .done (function(response){
+        $("body").html(response)
+      });
     });
   });
 });
