@@ -21,4 +21,11 @@ class ShrinesController < ApplicationController
     @posts = Post.where(shrine_id: @shrine.id).order(visit_date: :desc).includes(:user, :shrine, :post_images).page(params[:page]).per(6)
     impressionist(@shrine, nil, unique: [:ip_address]) # 閲覧数をカウントする。IPアドレスで識別
   end
+
+  def location
+    @lat = params[:lat]
+    @lng = params[:lng]
+    # 現在地から50km以内の登録された神社を取得
+    @location_shrine = Shrine.near([@lat.to_i, @lng.to_i], 500, units: :km).includes(:shrine_gods, :gods, :shrine_tags, :tags)
+  end
 end
