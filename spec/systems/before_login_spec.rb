@@ -263,7 +263,7 @@ describe 'トップページ' do
         expect(shrine_link).to match(/神社/i)
       end
       it 'ログアウトのリンクがあるか' do
-        logout_link = find_all('a')[59].native.inner_text
+        logout_link = find_all('a')[60].native.inner_text
         expect(logout_link).to match(/ログアウト/i)
       end
     end
@@ -288,11 +288,11 @@ describe 'トップページ' do
       end
       it '神社のリンクはあるか' do
         shrine_link = find_all('a')[3].native.inner_text
-        click_link shrine_link
+        click_link shrine_link, match: :first
         is_expected.to eq '/shrines'
       end
       it 'ログアウトのリンクは正しいか' do
-        logout_link = find_all('a')[59].native.inner_text
+        logout_link = find_all('a')[60].native.inner_text
         click_link logout_link
         is_expected.to eq '/users/sign_out'
       end
