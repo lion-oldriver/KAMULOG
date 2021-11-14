@@ -51,3 +51,8 @@ crumb :search do
   link "検索結果", search_path
   parent :shrines
 end
+
+crumb :location do
+  link "現在地周辺の神社", location_path
+  parent :shrines
+end

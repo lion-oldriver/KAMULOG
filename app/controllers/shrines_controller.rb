@@ -1,4 +1,6 @@
 class ShrinesController < ApplicationController
+  before_action :authenticate_user!, only: [:location]
+
   def index
     if params[:sort] == "views" # 閲覧数順にソート
       @shrines = Shrine.views.includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(6)
@@ -23,9 +25,9 @@ class ShrinesController < ApplicationController
   end
 
   def location
-    @lat = params[:lat]
+    @lat = params[:lat] #ajaxでデータを取得
     @lng = params[:lng]
     # 現在地から50km以内の登録された神社を取得
-    @location_shrine = Shrine.near([@lat.to_i, @lng.to_i], 500, units: :km).includes(:shrine_gods, :gods, :shrine_tags, :tags)
+    @location_shrine = Shrine.near([@lat.to_i, @lng.to_i], 50, units: :km).includes(:shrine_gods, :gods, :shrine_tags, :tags).page(params[:page]).per(6)
   end
 end
