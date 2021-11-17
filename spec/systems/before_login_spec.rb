@@ -32,11 +32,11 @@ describe 'トップページ' do
         expect(shrine_link).to match(/神社/i)
       end
       it '新規登録のリンクはあるか' do
-        sign_up_link = find_all('a')[58].native.inner_text
+        sign_up_link = find_all('a')[59].native.inner_text
         expect(sign_up_link).to match(/新規登録/i)
       end
       it 'ログインのリンクはあるか' do
-        sign_in_link = find_all('a')[59].native.inner_text
+        sign_in_link = find_all('a')[60].native.inner_text
         expect(sign_in_link).to match(/ログイン/i)
       end
     end
@@ -60,12 +60,12 @@ describe 'トップページ' do
         is_expected.to eq '/shrines'
       end
       it '新規登録のリンクは正しいか' do
-        signin_link = find_all('a')[58].native.inner_text
+        signin_link = find_all('a')[59].native.inner_text
         click_link signin_link
         is_expected.to eq '/users/sign_up'
       end
       it 'ログインのリンクは正しいか' do
-        signup_link = find_all('a')[59].native.inner_text
+        signup_link = find_all('a')[60].native.inner_text
         click_link signup_link
         is_expected.to eq '/users/sign_in'
       end

@@ -25,6 +25,7 @@
                 <a class="dropdown-toggle text-white font-weight-bold" data-toggle="dropdown">神社</a>
                 <%= render "layouts/header_shrine" %>
               </li>
+              <li><%= link_to "現在地周辺", location_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
               <li><%= link_to "新規登録", new_user_registration_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
               <li><%= link_to "ログイン", new_user_session_path, class:"nav-link text-white font-weight-bold mr-1" %></li>
             <% end %>

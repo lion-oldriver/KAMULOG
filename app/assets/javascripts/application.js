@@ -20,7 +20,7 @@
 //= require jcanvas
 //= require_tree .
 
-/*global $ gon google geocoder markerLatLng*/
+/*global $ gon google geocoder markerLatLng navigator*/
 var map;
 var marker = [];
 var infoWindow = [];
@@ -29,7 +29,7 @@ const KEY = gon.api_key;
 
 function initMap() {
   // geocoderを初期化
-  geocoder = new google.maps.Geocoder()
+  geocoder = new google.maps.Geocoder();
   // 詳細ページで見ている場所をマップの中心に表示
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
