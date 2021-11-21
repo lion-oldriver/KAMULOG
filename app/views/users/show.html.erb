@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="media border bg-light shadow-sm p-1 mt-2 mb-3">
-        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, class:"rounded-circle mr-3 mt-1 ml-1" %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", size: "50x50", class:"rounded-circle mr-3 mt-1 ml-1" %>
         <div class="media-body">
           <h4><%= @user.name %></h4>
           <%= @user.introduction %>
@@ -29,7 +29,7 @@
       <% @posts.each do |post| %>
         <div class="card shadow mb-3">
           <div class="row">
-            <div class="col-4"><%= attachment_image_tag post.post_images.first, :image, class:"w-100" %></div>
+            <div class="col-4"><%= attachment_image_tag post.post_images.first, :image, fallback: "no_shrine.jpg", class:"w-100" %></div>
             <div class="col-8">
               <div class="card-body py-2">
                 <h5 class="card-title"><%= link_to post.shrine.name, shrine_path(post.shrine) %></h5>
@@ -65,7 +65,7 @@
           <div class="border bg-light shadow-sm">
             <% @followings.each do |following| %>
               <div class="media py-2 ml-1 border-bottom">
-                <%= attachment_image_tag following, :profile_image, :fill,50,50, class:"rounded-circle" %>
+                <%= attachment_image_tag following, :profile_image, :fill,50,50, fallback: "no_image.jpg", size: "50x50", class:"rounded-circle" %>
                 <h5 class="media-body pt-3 pl-2"><%= link_to following.name, user_path(following) %></h5>
               </div>
             <% end %>
