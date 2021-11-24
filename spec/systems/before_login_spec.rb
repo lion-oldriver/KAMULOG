@@ -31,6 +31,10 @@ describe 'トップページ' do
         shrine_link = find_all('a')[2].native.inner_text
         expect(shrine_link).to match(/神社/i)
       end
+      it '現在地周辺のリンクはあるか' do
+        location_link = find_all('a')[58].native.inner_text
+        expect(location_link).to match(/現在地周辺/i)
+      end
       it '新規登録のリンクはあるか' do
         sign_up_link = find_all('a')[59].native.inner_text
         expect(sign_up_link).to match(/新規登録/i)
@@ -58,6 +62,11 @@ describe 'トップページ' do
         shrine_link = find_all('a')[2].native.inner_text
         click_link shrine_link
         is_expected.to eq '/shrines'
+      end
+      it '現在地周辺のリンクは正しいか' do
+        location_link = find_all('a')[58].native.inner_text
+        click_link location_link
+        is_expected.to eq '/location'
       end
       it '新規登録のリンクは正しいか' do
         signin_link = find_all('a')[59].native.inner_text
@@ -262,6 +271,10 @@ describe 'トップページ' do
         shrine_link = find_all('a')[3].native.inner_text
         expect(shrine_link).to match(/神社/i)
       end
+      it '現在地周辺のリンクがあるか' do
+        location_link = find_all('a')[59].native.inner_text
+        expect(location_link).to match(/現在地周辺/i)
+      end
       it 'ログアウトのリンクがあるか' do
         logout_link = find_all('a')[60].native.inner_text
         expect(logout_link).to match(/ログアウト/i)
@@ -286,10 +299,15 @@ describe 'トップページ' do
         click_link manner_link, match: :first
         is_expected.to eq '/home/manner'
       end
-      it '神社のリンクはあるか' do
+      it '神社のリンクは正しいか' do
         shrine_link = find_all('a')[3].native.inner_text
         click_link shrine_link, match: :first
         is_expected.to eq '/shrines'
+      end
+      it '現在地周辺のリンクが正しいか' do
+        location_link = find_all('a')[59].native.inner_text
+        click_link location_link
+        is_expected.to eq '/location'
       end
       it 'ログアウトのリンクは正しいか' do
         logout_link = find_all('a')[60].native.inner_text
